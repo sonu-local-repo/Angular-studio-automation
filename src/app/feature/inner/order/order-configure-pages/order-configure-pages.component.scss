@@ -1,0 +1,90 @@
+.page-card {
+  width: 75px;
+  border-radius: 0px;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
+  .page-name-filled {
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 18px;
+    color: #ff4646;
+  }
+}
+
+.page-style{
+  position: relative;
+}
+
+.selected {
+  background-color: #83d02f;
+  color: #ffffff;
+
+  .page-name-filled {
+    color: #ffff0f;
+  }
+}
+
+.un-selected {
+  background-color: #6082f3;
+  color: #ffffff;
+
+  .page-name-filled {
+    color: #ffff0f;
+  }
+}
+
+::ng-deep {
+  .order-page-details-dialog {
+    max-width: 98% !important;
+    height: 95% !important;
+    margin: auto !important;
+  }
+  .mat-dialog-content {
+    max-height: calc(100% - 80px);
+    min-height: calc(100% - 80px);
+  }
+}
+
+.scroll-pad-r {
+  padding-right: 15px;
+}
+
+.page-numbers-line {
+  padding: 5px;
+  background-color: beige;
+  margin-top: 25px;
+}
+
+.page-property-group {
+  margin-bottom: 8px;
+  border-top-style: ridge;
+  border-left-style: ridge;
+  border-right-style: ridge;
+}
+
+.page-action-container {
+  padding: 5px;
+  border: ridge;
+  background-color: ghostwhite;
+}
+
+.btn-clear-selection {
+  width: 100%;
+  margin: 5px 0 0 0;
+
+  i {
+    font-size: 18px;
+  }
+}
+
+.data-form-group {
+  width: 40%;
+  max-width: 40%;
+}

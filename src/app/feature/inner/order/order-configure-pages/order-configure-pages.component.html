@@ -1,0 +1,203 @@
+<h2 mat-dialog-title>Configure Pages</h2>
+<mat-dialog-content fxLayout.xs="column" fxLayoutAlign="space-between">
+  <div fxFlexLayout="row wrap" fxFlex fxLayoutGap="20px">
+    <div fxLayout="column" fxFlex="12">
+      <perfect-scrollbar class="scroll-pad-r">
+        <form [formGroup]="dataFormGroup" autocomplete="off">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Number of pages</mat-label>
+            <input
+              matInput
+              numbersOnly
+              maxlength="3"
+              formControlName="pageCount"
+              (keyup)="onPageCountChange($event.currentTarget.value, $event)"
+              (keydown)="changeEvent($event.currentTarget.value)"
+            />
+            <mat-error>Page number should be greater than 0</mat-error>
+          </mat-form-field>
+            <button
+              mat-stroked-button
+              color="primary"
+              style="width: 100%; margin-top: 10px;"
+              (click)="selectAll()"
+            >
+              <mat-icon>select_all</mat-icon>
+              Select All
+            </button>
+            <button
+              mat-stroked-button
+              color="primary"
+              style="width: 100%;"
+              (click)="clearSelection()"
+              [disabled]="highlitedPageNumbers.length === 0"
+            >
+              <mat-icon>tab_unselected</mat-icon>
+              Clear Selected
+            </button>
+            <button
+              mat-stroked-button
+              color="primary"
+              style="width: 100%; "
+              (click)="selectRemaining()"
+              [disabled]="selectUnappliedInActive"
+            >
+              <mat-icon>select_all</mat-icon>
+              Select Unapplied
+            </button>
+        </form>
+        <form
+          fxLayout="column"
+          [formGroup]="applyFormGroup"
+          autocomplete="off"
+          style="padding-top: 20px;"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Type</mat-label>
+            <mat-select matNativeControl formControlName="type">
+              <mat-option>--</mat-option>
+              <mat-option
+                *ngFor="let type of porpertyList"
+                value="{{ type.value }}"
+                (onSelectionChange)="onPropertySelected($event, type)"
+                >{{ type.text }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Value</mat-label>
+            <input
+              matInput
+              formControlName="value"
+              *ngIf="applyFormGroup.value.type != 'Notes'"
+              (click)="onLovApply()"
+
+            />
+            {{applyFormGroup.value.value}}
+          <!--  <mat-select
+              matNativeControl
+              formControlName="value"
+              [disabled]="!applyFormGroup.value.type"
+              *ngIf="applyFormGroup.value.type !== 'Notes'"
+            >
+              <mat-option>&#45;&#45;</mat-option>
+              <mat-option
+                *ngFor="let type of effectsList"
+                value="{{ type.value }}"
+                >{{ type.text }}
+              </mat-option>
+            </mat-select>-->
+            <input
+              matInput
+              formControlName="value"
+              *ngIf="applyFormGroup.value.type === 'Notes'"
+              (click)="onLovUnApply()"
+            />
+          </mat-form-field>
+          <div
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between center"
+            fxFlex
+            fxFlexOffset="20px"
+          >
+            <button
+              mat-stroked-button
+              color="primary"
+              fxFlex="48"
+              (click)="onUndo()"
+              [disabled]="historyPages.length === 0"
+            >
+              Undo
+            </button>
+            <button
+              mat-stroked-button
+              color="primary"
+              fxFlex="48"
+              [disabled]="
+                !applyFormGroup.value.type ||
+                !applyFormGroup.value.value ||
+                highlitedPageNumbers.length === 0
+              "
+              (click)="onApply()"
+            >
+              Apply
+            </button>
+            <button
+              mat-stroked-button
+              color="primary"
+              fxFlex="48"
+              (click)="onLovApply()"
+            >
+              LOV
+            </button>
+          </div>
+        </form>
+        <div
+          fxLayout="row"
+          fxLayoutGap="20px"
+          class="page-numbers-line"
+          *ngIf="pageNumbersLine && pageNumbersLine !== ''"
+        >
+          {{ pageNumbersLine }}
+        </div>
+      </perfect-scrollbar>
+    </div>
+    <div
+      fxLayout="column"
+      fxFlex
+      style="height: 100%;"
+      fxLayoutAlign="start start"
+    >
+      <div fxLayout="row" fxFlex="60">
+        <perfect-scrollbar>
+          <mat-chip-list>
+            <div *ngFor="let page of pages">
+              <mat-chip
+                class="page-card"
+                [ngClass]="[isPageSelected(page.pageNo)]"
+                (click)="togglePageSelection(page, $event)"
+                [matTooltip]="getToolTip(page)"
+              >
+                {{ page.pageNo }}
+                <mat-icon
+                  class="page-name-filled"
+                  *ngIf="page.pageDetails.length > 0"
+                >
+                  star
+                </mat-icon>
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+        </perfect-scrollbar>
+      </div>
+      <div fxLayout="row"></div>
+      <div>
+        <app-order-page-tasks
+          [pages]="pages"
+          [isReadonly]="false"
+          [updateCounter]="updateCounter"
+          (removePropertyFromPage)="removePropertyFromPage($event)"
+        >
+        </app-order-page-tasks>
+      </div>
+    </div>
+
+    <!-- <div class="page-name-container"></div> -->
+    <!-- <div fxLayoutGap="20px" class="page-action-container" fxLayout="row">
+
+    </div> -->
+    <div
+      fxLayoutGap="20px"
+      fxLayout="row"
+      class="page-properties-container"
+    ></div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" color="warn" (click)="onCancel()">
+    Cancel
+  </button>
+  <button mat-button type="button" color="primary" (click)="onSave()" [disabled]="disableButton">
+    Save
+  </button>
+</mat-dialog-actions>

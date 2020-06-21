@@ -1,0 +1,89 @@
+<app-page-scroll-layout>
+  <form
+    [formGroup]="searchForm"
+    autocomplete="off"
+    style="padding: 0 10px; font-size: 12px;"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <div fxLayout="column" fxFlex="60">
+        <div fxLayout="row" fxLayoutGap="20px">
+          <div fxLayout="column" fxFlex="30">
+            <mat-form-field appearance="legacy" class="search-box">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" />
+              <button
+                mat-button
+                type="button"
+                *ngIf="searchForm.value.name !== ''"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                matTooltip="Clear"
+                (click)="onClearSearch('name')"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex="30">
+            <mat-form-field appearance="legacy" class="search-box">
+              <mat-label>Mobile #</mat-label>
+              <input matInput formControlName="mobile" numbersOnly />
+              <button
+                mat-button
+                type="button"
+                *ngIf="searchForm.value.mobile !== ''"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                matTooltip="Clear"
+                (click)="onClearSearch('mobile')"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <div>
+              <button
+                mat-raised-button
+                [disabled]="
+                  searchForm.value.name === '' && searchForm.value.mobile === ''
+                "
+                color="accent"
+                class="btn-search"
+                (click)="onSearch()"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-chip-list aria-label="Fish selection" *ngIf="searchCounter > 0">
+            <mat-chip class="clear-search" (click)="onClearSearch('all')">
+              <mat-icon class="clear-search__icon">close</mat-icon>Clear All
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div>
+          <button mat-raised-button color="primary" (click)="addNewCustomer()">
+            Create Customer
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <app-customer-list-table-view
+    [searchCriteria]="this.searchForm.value"
+    [searchCounter]="searchCounter"
+  >
+  </app-customer-list-table-view>
+</app-page-scroll-layout>
+
+<!-- <app-floating-add-button
+  [text]="'New Customer'"
+  (buttonClick)="addNewCustomer()"
+>
+</app-floating-add-button> -->

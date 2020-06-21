@@ -1,0 +1,73 @@
+@import "../../../../shared/styles/base.scss";
+@import "../../../../shared/styles/tab.scss";
+@import "../../customer/customer-profile-summary/customer-profile-summary.component.scss";
+
+@mixin order-status {
+  font-weight: 500;
+}
+
+.order-status__created {
+  @include order-status;
+  color: green;
+}
+
+.order-status__cancelled {
+  @include order-status;
+  font-weight: 500;
+}
+
+::ng-deep {
+  .order-page-details {
+    .mat-expansion-panel-content {
+      margin-left: 40px;
+      .mat-expansion-panel-body {
+        div {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+.custom-list li {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.custom-list li .label {
+  color: #4f4f4f;
+  float: left;
+  margin-right: 30px;
+  width: 25%;
+}
+
+.custom-list li .text {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.page-details-item {
+  margin-bottom: 10px;
+  line-height: 30px;
+  background-color: #f3f1f1;
+  padding: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.page-chip {
+  background-color: khaki;
+  border-bottom: solid;
+}
+
+.multi-page-chip {
+  width: 85px;
+  justify-content: space-evenly;
+  background-color: #b7f3b7;
+  border-bottom: solid;
+}

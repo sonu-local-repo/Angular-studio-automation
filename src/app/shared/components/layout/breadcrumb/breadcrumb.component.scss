@@ -1,0 +1,27 @@
+ol {
+  list-style: none;
+  display: flex;
+  margin-left: -40px;
+  font-size: 12px;
+
+  li a {
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+    cursor: pointer;
+  }
+
+  li span {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: darkgray;
+  }
+
+  li:after {
+    content: "\\";
+  }
+  li:last-child:after {
+    content: "";
+  }
+}

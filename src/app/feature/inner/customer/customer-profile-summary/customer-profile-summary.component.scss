@@ -1,0 +1,74 @@
+.profile-summary-card {
+  border-left: 15px;
+  border-left-style: inset;
+}
+
+.profile-summary-card.employee-card {
+  border-left-color: chartreuse;
+}
+
+.profile-summary-card.customer-card {
+  border-left-color: #00ffd0;
+}
+
+.profile-summary-card.order-card {
+  border-left-color: #29ff88;
+}
+
+.profile-edit {
+  button {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+
+  i {
+    font-size: 25px;
+  }
+}
+
+.profile-snap-left {
+  border-right: 2px dashed #ccc;
+}
+
+.profile-snap-right {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.profile-snap-list{
+  width: 100%;
+}
+.profile-snap-list li {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.profile-snap-list li .title {
+  color: #4f4f4f;
+  float: left;
+  margin-right: 30px;
+  width: 25%;
+}
+
+.profile-snap-list li .text {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.profile-image {
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+  margin-right: 15px;
+}
+
+.profile-snap-icon {
+  color: #828282;
+  font-size: 20px;
+  margin-right: 5px;
+}

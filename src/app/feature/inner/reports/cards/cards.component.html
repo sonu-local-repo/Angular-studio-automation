@@ -1,0 +1,42 @@
+<div fxLayout="row">
+  <div *ngIf="dataLoadedComplete">
+    <ngx-charts-number-card
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="data"
+      [innerPadding]="40"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-number-card>
+  </div>
+</div>
+<div style="padding: 30px;">
+  <div *ngIf="lineChartLoadComplete">
+    <div>
+      <ngx-charts-line-chart
+      [view]="lineChartview"
+    [scheme]="colorScheme"
+    [results]="orderLine"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [yScaleMin]="yMinValue"
+    [showRefLines]="false"
+    [animations]="animations"
+    legendPosition='below'
+    [autoScale]="autoScale">
+  </ngx-charts-line-chart>
+  
+    </div>
+    
+  <!-- (select)="onSelect($event)" -->
+  </div>
+</div>
+
+
+

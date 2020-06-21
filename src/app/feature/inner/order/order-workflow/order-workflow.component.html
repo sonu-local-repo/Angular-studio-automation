@@ -1,0 +1,478 @@
+<button mat-button class="close" [mat-dialog-close]="true">
+  <mat-icon>close</mat-icon>
+</button>
+<mat-horizontal-stepper #stepper [linear]="true">
+  <mat-step [formGroup]="orderForm">
+    <form [formGroup]="orderForm">
+      <ng-template matStepLabel>Customer Details</ng-template>
+      <div fxLayout="row">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Customer Name"
+            formControlName="customerName"
+            required
+            #searchRef
+          />
+          <mat-error>This Field is required</mat-error>
+        </mat-form-field>
+        <div style="padding-top: 12px;">
+          <mat-icon style="cursor: pointer;" (click)="lookupCustomer()"
+            >search</mat-icon
+          >
+        </div>
+      </div>
+      <div *ngIf="this.customer">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="customerName" required readonly />
+            <mat-error>This is a required field</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Phone #</mat-label>
+            <input matInput formControlName="phone" readonly />
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" readonly />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <!-- <button mat-button matStepperPrevious style="float: left;">
+              Previous
+            </button>-->
+            <button mat-button mat-dialog-close style="float: left;">
+              Close
+            </button>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <button mat-button matStepperNext [disabled]="!this.customerId">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [formGroup]="orderForm">
+    <form [formGroup]="orderForm">
+      <ng-template matStepLabel>Order Details</ng-template>
+      <div fxLayout="row">
+        <mat-form-field fxFlex>
+          <mat-label>Order Type</mat-label>
+          <mat-select matNativeControl formControlName="type" required>
+            <mat-option value="">--</mat-option>
+            <mat-option
+              *ngFor="let type of orderTypeList"
+              value="{{ type.value }}"
+              (onSelectionChange)="onTypeSelected($event, type)"
+              >{{ type.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="orderForm.controls['type'].hasError('required')"
+            >Required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlexOffset="20px">
+          <mat-label>Sub Type</mat-label>
+          <mat-select
+            matNativeControl
+            formControlName="subType"
+            [disabled]="
+              !orderForm.value.type ||
+              subtype.length === 0 ||
+              (isEditMode && orderStatus !== 'Draft')
+            "
+            required
+          >
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let type of subtype" value="{{ type }}">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="orderForm.controls['subType'].hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex>
+          <mat-label>Priority</mat-label>
+          <mat-select
+            matNativeControl
+            formControlName="priority"
+
+            required
+          >
+<!--            [disabled]="isEditMode"-->
+            <mat-option
+              *ngFor="let option of priorityList"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="orderForm.controls['priority'].hasError('required')"
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlexOffset="20px">
+          <mat-label>Due Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="dueDatePicker"
+            formControlName="dueDate"
+            [value]="inputDueDate"
+            required
+            type="text"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dueDatePicker">
+          </mat-datepicker-toggle>
+          <mat-datepicker
+            #dueDatePicker
+            [startAt]="inputDueDate"
+          ></mat-datepicker>
+          <mat-error *ngIf="orderForm.controls['dueDate'].hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex="49">
+          <mat-label>Size</mat-label>
+          <input matInput formControlName="size" />
+        </mat-form-field>
+        <mat-form-field fxFlex="49" fxFlexOffset="20px">
+          <mat-label>Quantity</mat-label>
+          <input
+            matInput
+            formControlName="quantity"
+            numbersOnly
+            maxlength="3"
+            required
+          />
+          <mat-error
+            *ngIf="orderForm.controls['quantity'].hasError('required')"
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex="49">
+          <mat-label>Couple Name</mat-label>
+          <input matInput formControlName="coupleName" required />
+        </mat-form-field>
+        <mat-form-field fxFlex="49" fxFlexOffset="20px">
+          <mat-label>Colour</mat-label>
+          <!-- <input matInput formControlName="colour" required /> -->
+          <mat-select matNativeControl formControlName="colour" required>
+            <mat-option
+              *ngFor="let option of colorList"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+          *ngIf="orderForm.controls['colour'].hasError('required')"
+        >
+          Required
+        </mat-error>
+        </mat-form-field>
+      </div>
+      <div
+        *ngIf="
+          orderForm.value.subType === 'Album' &&
+          orderForm.value.type === 'Printing'
+        "
+      >
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field fxFlex="30">
+            <mat-label>Album Type</mat-label>
+
+            <mat-select matNativeControl formControlName="albumType" required>
+              <mat-option
+                *ngFor="let option of albumTypeList"
+                [value]="option.value"
+              >
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="orderForm.controls['albumType'].hasError('required')"
+            >
+              Required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="30">
+            <mat-label>Cover Type</mat-label>
+            <!-- <mat-select matNativeControl formControlName="coverType" required> -->
+              <!-- <mat-option
+                *ngFor="let option of coverTypeList"
+                value="{{ option.value }}"
+              >
+                {{ option.text }}
+              </mat-option>
+            </mat-select> -->
+            <input matInput formControlName="coverType" required>
+            <mat-error
+              *ngIf="orderForm.controls['coverType'].hasError('required')"
+            >
+              Required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>Bag Type</mat-label>
+            <mat-select matNativeControl formControlName="bagType" required>
+              <mat-option
+                *ngFor="let option of bagTypeList"
+                [value]="option.value"
+              >
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="orderForm.controls['bagType'].hasError('required')"
+            >
+              Required
+            </mat-error>
+          </mat-form-field>
+
+          <div fxFlex>
+            <button
+              type="button"
+              mat-stroked-button
+              color="warn"
+              (click)="configurePages()"
+              class="btn-configure-page"
+            >
+              <mat-icon>style</mat-icon>
+              Configure Pages
+            </button>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex>
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            class="notes"
+            formControlName="notes"
+            maxlength="255"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <button mat-button matStepperPrevious style="float: left;">
+              Previous
+            </button>
+            <button mat-button mat-dialog-close style="float: left;">
+              Close
+            </button>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <button
+              mat-button
+              (click)="saveAsDraft()"
+              [disabled]="!(orderStatus === 'New' || orderStatus === 'Draft')"
+            >
+              Save as Draft
+            </button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="invalidForm('Order Details')"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [formGroup]="orderForm">
+    <ng-template matStepLabel> Order Summary</ng-template>
+    <div fxLayout="row" fxFlex fxLayoutGap="20px">
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Customer Name</mat-label>
+        <input matInput formControlName="customerName" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>email</mat-label>
+        <input matInput formControlName="email" readonly />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex fxLayoutGap="20px">
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Type</mat-label>
+        <input
+          matInput
+          formControlName="type"
+          [value]="orderForm.value.type"
+          readonly
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Sub Type</mat-label>
+        <input
+          matInput
+          formControlName="subType"
+          [value]="orderForm.value.subType"
+          readonly
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Size</mat-label>
+        <input
+          matInput
+          formControlName="size"
+          readonly
+          [value]="orderForm.value.size"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex fxLayoutGap="20px">
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Couple Name</mat-label>
+        <input
+          matInput
+          formControlName="coupleName"
+          [value]="orderForm.value.coupleName"
+          readonly
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Colour</mat-label>
+        <input
+          matInput
+          formControlName="colour"
+          [value]="orderForm.value.colour"
+          readonly
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          formControlName="quantity"
+          readonly
+          [value]="orderForm.value.quantity"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+    <div *ngIf="orderForm.value.subType === 'Album'">
+      <div fxLayout="row" fxFlex fxLayoutGap="20px">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Album Type</mat-label>
+          <input
+            matInput
+            formControlName="albumType"
+            [value]="orderForm.value.albumType"
+            readonly
+          />
+        </mat-form-field>
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Cover Type</mat-label>
+          <input
+            matInput
+            formControlName="coverType"
+            [value]="orderForm.value.coverType"
+            readonly
+          />
+        </mat-form-field>
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Bag Type</mat-label>
+          <input
+            matInput
+            formControlName="size"
+            readonly
+            [value]="orderForm.value.bagType"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <span *ngIf="isEditMode && orderStatus !== 'Draft'; else new">
+        <button mat-raised-button color="primary" (click)="onSave()">
+          Update Order
+        </button>
+      </span>
+      <ng-template #new>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onSave()"
+          [disabled]="!orderForm.valid"
+        >
+          Create Order
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right; margin-left: 20px;"
+          (click)="onCreateSubOrder()"
+          [disabled]="!orderForm.valid"
+          *ngIf="!disableCreateSubOrder"
+        >
+          Save and Create SubOrder
+        </button>
+      </ng-template>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <mat-error *ngIf="saveError.length > 0">{{ saveError }}</mat-error>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+      style="padding-top: 30px;"
+    >
+      <div fxLayout="column">
+        <div fxLayout="row">
+          <button mat-button matStepperPrevious style="float: left;">
+            Previous
+          </button>
+          <button mat-button mat-dialog-close style="float: left;">
+            Close
+          </button>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <span *ngIf="!isEditMode">
+          <button
+            mat-button
+            style="float: left;"
+            (click)="saveAsDraft()"
+            [disabled]="!(orderStatus === 'New' || orderStatus === 'Draft')"
+          >
+            Save as Draft
+          </button>
+        </span>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

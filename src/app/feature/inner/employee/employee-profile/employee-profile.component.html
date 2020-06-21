@@ -1,0 +1,19 @@
+<app-page-scroll-layout>
+    <app-employee-profile-summary [employeeDetails]="employeeDetails"></app-employee-profile-summary>
+    <mat-tab-group>
+        <mat-tab label="Web Access">
+            <mat-card>
+                <app-employee-web-access-add-edit></app-employee-web-access-add-edit>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Bank Details">
+            Bank Details
+        </mat-tab>
+        <mat-tab label="Attendance Details">
+            Attendance Details
+        </mat-tab>
+        <mat-tab label="Leave Details">
+            Leave Details
+        </mat-tab>
+    </mat-tab-group>
+</app-page-scroll-layout>

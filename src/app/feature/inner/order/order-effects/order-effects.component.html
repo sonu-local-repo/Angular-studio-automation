@@ -1,0 +1,11 @@
+<div>
+  <div  class = "effects" >
+    <div *ngFor="let effects of effectsList">
+      <p (click)="close(effects.text)" class="effects-child">{{effects.text}}</p>
+    </div>
+
+  </div>
+  <button    mat-raised-button    color="danger"    (click)="close(null)" > Cancel  </button>
+</div>
+
+

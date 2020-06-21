@@ -1,0 +1,16 @@
+@import "../../../../shared/styles/table.scss";
+
+.hidden {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
+
+.dialog-content {
+  padding-bottom: 15px;
+}
+
+.clear-search {
+  cursor: pointer;
+}

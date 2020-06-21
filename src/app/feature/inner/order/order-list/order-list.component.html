@@ -1,0 +1,44 @@
+<app-page-scroll-layout>
+  <form
+    [formGroup]="searchForm"
+    autocomplete="off"
+    style="padding: 0 10px; font-size: 12px;"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <div fxLayout="column" fxFlex="80">
+        <mat-form-field
+          appearance="legacy"
+          class="search-box"
+          style="width: 80%;"
+        >
+          <mat-label>Search Orders...</mat-label>
+          <input matInput formControlName="custName" #searchRef/>
+          <button
+            mat-button
+            matSuffix
+            [disabled]="searchForm.value.custName === ''"
+            (click)="onSearch()"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <div>
+          <button mat-raised-button color="primary" (click)="createNewOrder()">
+            Create Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <app-order-list-table-view
+    [searchCriteria]="this.searchForm.value"
+    [searchCounter]="searchCounter"
+  >
+  </app-order-list-table-view>
+</app-page-scroll-layout>
+<!--
+<app-floating-add-button [text]="'New Order'" (buttonClick)="addNewOrder()">
+</app-floating-add-button> -->

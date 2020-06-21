@@ -1,0 +1,46 @@
+@import "../../customer/customer-list/customer-list.component.scss";
+@import "../../../../shared/styles/tab.scss";
+@import "../../../../shared/styles/base.scss";
+
+.mat-card-title {
+  display: flex;
+}
+
+.notes {
+  min-height: 110px;
+}
+
+.footer {
+  padding-right: 15px;
+  background: #f5f5f5;
+  height: 48px;
+  align-items: center !important;
+  box-shadow: 0 0px 10px 0px rgba(115, 115, 115, 0.35), 0 10px 20px -5px rgba(115, 115, 115, 0.35),
+    -10px 0 20px -5px rgba(115, 115, 115, 0.35);
+}
+
+form {
+  height: 100%;
+}
+
+.remove-customer {
+  font-size: 20px;
+  cursor: pointer;
+  color: red;
+}
+
+.view-customer {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-configure-page {
+  float: right;
+  margin-top: 3px;
+}
+
+.lookup-error {
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 12px;
+}

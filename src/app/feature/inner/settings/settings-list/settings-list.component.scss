@@ -1,0 +1,44 @@
+::ng-deep {
+  .mat-button-toggle-label-content {
+    min-width: 100px;
+  }
+
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 30px !important;
+  }
+}
+
+.mat-button-toggle-checked {
+  background-color: #5fb6ca;
+  color: white;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border-radius: 25px;
+  height: 30px;
+}
+
+.page-config-box-check {
+  mat-checkbox {
+    margin-right: 20px;
+  }
+}
+
+.page-config-box-name {
+  padding: 0px 3px 0px 10px;
+  background-color: grey;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.page-config-box-details {
+  padding: 3px 3px 3px 50px;
+  margin-bottom: 5px;
+  line-height: 30px;
+  background-color: #f3f1f1;
+  border-radius: 8px;
+  font-weight: 500;
+}

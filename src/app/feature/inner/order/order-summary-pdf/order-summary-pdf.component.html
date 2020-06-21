@@ -1,0 +1,136 @@
+<div style="position: absolute; opacity: 0.0;">
+  <div class="container" id="pdftoExport">
+    <div fxLayout="row" fxLayoutAlign="space-between end">
+      <div fxLayout="column">
+        <div id="logo">
+          <img src="\assets\images\Capture.JPG" />
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div id="company">
+          <div>NEAR GOVT. HOSPITAL,</div>
+          <div>Karunagapally</div>
+          <div>+91 476 2627744</div>
+          <div>capitalcolorpark@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between end"
+      style="padding-top:40px"
+    >
+      <div fxLayout="column">
+        <div class="to">CUSTOMER INFO:</div>
+        <br>
+        <h2 class="name">Name : {{ customer?.name }}</h2>
+        <div class="address">Mobile : {{ customer?.mobile }}</div>
+        <div class="email">
+          Email :
+          <a>{{ customer?.email }}</a>
+        </div>
+        <br>
+        <div>Couple Name : {{ orders[0].value3 }}</div>
+        <div>Colour : {{ orders[0].value4 }}</div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="end">
+        <h2
+          style="display: flex;
+        margin-right: 0px;
+        margin-left: auto;
+        margin-bottom: 0px;
+       margin-top: auto;"
+        >
+          ORDER NO: {{ parentOrderId }}
+        </h2>
+        <div class="date">Received Date: {{ orderCreatedDate | date }}</div>
+      </div>
+    </div>
+    <main>
+      <div
+        fxLayout="column"
+        style="max-width:100%; margin: auto; padding-top: 20px;"
+        fxLayoutGap="20px"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="10px"
+          style="border-bottom: 1px solid #f5f5f5; background-color:#efefef; margin-bottom: 0px;"
+        >
+          <div fxLayout="column" fxFlex="10" fxLayoutAlign="start center">
+            <h4>ORDER ID</h4>
+          </div>
+          <div fxLayout="column" fxFlex="70" fxLayoutAlign="start center">
+            <h4>DESCRIPTION</h4>
+          </div>
+          <div fxLayout="column" fxFlex fxLayoutAlign="start center">
+            <h4>QUANTITY</h4>
+          </div>
+        </div>
+
+        <div *ngFor="let order of orders">
+          <div fxLayout="row" fxLayoutGap="10px">
+            <div fxLayout="column" fxFlex="10" fxLayoutAlign="start center">
+              <h4>{{ order.id }}</h4>
+            </div>
+            <div fxLayout="column" fxFlex="70">
+              <div *ngIf="order.subType === 'Album'; else other">
+                <h3>{{ order?.type }} - {{ order?.subType }}</h3>
+                <h4 class="subheader">Album Type:    {{ order?.value0 }}</h4>
+                <h4 class="subheader">Cover Type:    {{ order?.value1 }}</h4>
+                <h4 class="subheader">
+                  Total Pages:      {{ order?.pages?.length }}
+                </h4>
+                <mat-list>
+                  <div *ngFor="let items of itemizedPages">
+                    <div *ngIf="items.orderId === order.id">
+                      <span *ngIf="items.list">
+                        <div *ngFor="let effects of items.list">
+                          <h3 mat-subheader>{{ effects?.type }}</h3>
+                          <div *ngFor="let pages of effects?.child">
+                            <mat-list-item>
+                              <div
+                                fxLayout="row"
+                                fxFlex
+                                fxLayoutAlign="space-around center"
+                                style="max-height: 20px;"
+                              >
+                                <div
+                                  fxLayout="column"
+                                  fxFlex="10"
+                                  fxLayoutAlign="end"
+                                >
+                                  <mat-icon mat-list-icon
+                                    >bubble_chart</mat-icon
+                                  >
+                                </div>
+                                <div fxLayout="column" fxFlex="20">
+                                  {{ pages?.type }}
+                                </div>
+                                <div fxLayout="column" fxFlex>
+                                  {{ pages.child }}
+                                </div>
+                              </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </mat-list>
+              </div>
+              <ng-template #other>
+                <h4>{{ order?.type }} - {{ order?.subType }}</h4>
+              </ng-template>
+            </div>
+            <div fxLayout="column" fxFlex fxLayoutAlign="start center">
+              <h4>{{ order?.quantity }}</h4>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

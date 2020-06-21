@@ -1,0 +1,31 @@
+.clear-search {
+  cursor: pointer;
+}
+
+.search-bar {
+  padding: 8px 16px 8px 16px;
+}
+
+.search-box {
+  @media (max-width: 599px) {
+    width: 100%;
+    margin-bottom: 0px !important;
+  }
+}
+
+::ng-deep {
+  tr.mat-header-row {
+    background-color: #f4f4f4;
+    height: 48px !important;
+  }
+
+  tr.mat-footer-row,
+  tr.mat-row {
+    height: 45px !important;
+  }
+
+  .mat-header-cell,
+  .mat-sort-header-arrow {
+    color: black;
+  }
+}

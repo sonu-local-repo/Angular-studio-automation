@@ -1,0 +1,28 @@
+.add-tray {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 0;
+  z-index: 99;
+  display: flex;
+  cursor: pointer;
+  width: 50px;
+  transition: width 0.5s;
+}
+
+.add-tray:hover {
+  width: 180px;
+  border-radius: 50px;
+  justify-content: safe;
+  background: linear-gradient(140deg,#2f7cde, #34a9db );
+  button {
+    box-shadow: none;
+  }
+}
+
+.add-tray__text {
+  color: #ffffff;
+  white-space: nowrap;
+  align-self: center;
+  // background-color: #2f7cde;
+}

@@ -1,0 +1,35 @@
+.login-card {
+  position: absolute;
+  right: 13%;
+
+  @media (min-width: 599px) {
+    width: 400px;
+  }
+  margin-top: 20%;
+  margin-bottom: 0px;
+}
+
+.login-message{
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  font-family: unset;
+  width: 30%;
+  color: white;
+}
+
+.btn-login {
+  width: 150px;
+  height: 50px;
+  line-height: 0px;
+  background-color: #2363c3;
+  border-radius: 30px;
+  float: right;
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+}
+
+.btn-login i {
+  font-size: 20px;
+}

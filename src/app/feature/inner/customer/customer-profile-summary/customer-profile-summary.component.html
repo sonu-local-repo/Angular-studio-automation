@@ -1,0 +1,32 @@
+<mat-card fxLayout="row" class="profile-summary-card customer-card">
+    <div fxFlex="40" fxLayout="row" class="profile-snap-left">
+        <div fxFlex>
+            <h3>{{customerDetails?.name}}</h3>
+            <div class="mat-small text-muted">{{getCustomerAddress()}}</div>
+        </div>
+    </div>
+    <div fxFlex="57" class="profile-snap-right">
+        <ul class="profile-snap-list">
+            <li>
+                <mat-icon class="profile-snap-icon">phone</mat-icon>
+                <div class="title mat-body-strong">Phone:</div>
+                <div class="text mat-body-strong">{{customerDetails?.phone}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">stay_current_portrait</mat-icon>
+                <div class="title mat-body-strong">Mobile:</div>
+                <div class="text mat-body-strong">{{customerDetails?.mobile}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">email</mat-icon>
+                <div class="title mat-body-strong">E-Mail:</div>
+                <div class="text mat-body-strong">{{customerDetails?.email}}</div>
+            </li>
+        </ul>
+    </div>
+    <div fxFlex="3" class="profile-edit" *ngIf="permissionService.canEdit(screenName.Customer_Profile)">
+        <button mat-mini-fab color="accent" (click)="editCustomerProfile()" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</mat-card>

@@ -1,0 +1,117 @@
+<app-page-scroll-layout>
+<button  mat-button (click)="exportAsPDF()"> Export as Pdf</button>
+<div *ngIf="orderDetails" id="MyDIv">
+  <mat-card fxLayout="row" class="profile-summary-card order-card">
+    <div fxFlex="49" class="profile-snap-left">
+      <ul class="profile-snap-list">
+
+        <li>
+          <mat-icon class="profile-snap-icon">shopping_basket</mat-icon>
+          <div class="title mat-body-strong">Order #:</div>
+          <div class="text mat-body-strong">{{orderDetails?.id}}</div>
+        </li>
+        <li>
+          <mat-icon class="profile-snap-icon">style</mat-icon>
+          <div class="title mat-body-strong">Item:</div>
+          <div class="text mat-body-strong">
+            {{orderDetails?.type}} {{orderDetails?.subType?'-':''}} {{orderDetails?.subType}}
+          </div>
+        </li>
+<!--        <li>
+          <mat-icon class="profile-snap-icon">calendar_today</mat-icon>
+          <div class="title mat-body-strong">Order Date:</div>
+          <div class="text mat-body-strong">{{orderDetails?.createdAt | date}}</div>
+        </li>-->
+<!--        <li>
+          <mat-icon class="profile-snap-icon">emoji_flags</mat-icon>
+          <div class="title mat-body-strong">Status:</div>
+          <div class="order-status__created"> {{orderDetails?.status}} </div>
+        </li>-->
+      </ul>
+    </div>
+    <div fxFlex="49" class="profile-snap-right">
+      <ul class="profile-snap-list">
+        <li>
+          <mat-icon class="profile-snap-icon">person</mat-icon>
+          <div class="title mat-body-strong">Customer Name:</div>
+          <div class="text mat-body-strong">{{orderDetails?.customerName}}</div>
+        </li>
+      <!--  <li>
+          <mat-icon class="profile-snap-icon">phone</mat-icon>
+          <div class="title mat-body-strong">Phone:</div>
+          <div class="text mat-body-strong">{{orderDetails?.phone}}</div>
+        </li>
+        <li>
+          <mat-icon class="profile-snap-icon">email</mat-icon>
+          <div class="title mat-body-strong">E-Mail:</div>
+          <div class="text mat-body-strong">{{orderDetails?.email}}</div>
+        </li>-->
+      </ul>
+    </div>
+
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Album Configuration</mat-card-title>
+    </mat-card-header>
+    <app-order-page-tasks [pages]="orderDetails.pages" [isReadonly]="true"></app-order-page-tasks>
+  </mat-card>
+<!--  <mat-tab-group>-->
+
+<!--    <mat-tab label="More Details">-->
+      <div fxLayout="row" fxLayoutAlign="space-between stretch">
+        <mat-card fxFlex="49" class="mar-t-5 mar-b-5">
+          <ul class="custom-list">
+            <li>
+              <div class="label mat-body-strong">Priority:</div>
+              <div class="text mat-body-strong">{{orderDetails?.priority}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Due Date:</div>
+              <div class="text mat-body-strong">{{orderDetails?.dueDate | date}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Order Taken By:</div>
+              <div class="text mat-body-strong"> {{orderDetails?.createdBy}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Size:</div>
+              <div class="text mat-body-strong">{{orderDetails?.size}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Quantity:</div>
+              <div class="text mat-body-strong">{{orderDetails?.quantity}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Album Type:</div>
+              <div class="text mat-body-strong">{{orderDetails?.value0}}</div>
+            </li>
+
+            <li>
+              <div class="label mat-body-strong">Cover Type:</div>
+              <div class="text mat-body-strong">{{orderDetails?.value1}}</div>
+            </li>
+            <li>
+              <div class="label mat-body-strong">Bag Type:</div>
+              <div class="text mat-body-strong"> {{orderDetails?.value2}}</div>
+            </li>
+          </ul>
+        </mat-card>
+        <mat-card fxFlex="49" class="mar-t-5 mar-b-5">
+          <mat-card-subtitle class="mat-body-strong">Notes:</mat-card-subtitle>
+          <mat-card-content fxLayout="column">
+            <label>{{orderDetails?.notes}}</label>
+          </mat-card-content>
+        </mat-card>
+      </div>
+<!--    </mat-tab>-->
+
+<!--    <mat-tab label="Page Details" *ngIf="orderDetails?.subType==='Album'">-->
+
+<!--    </mat-tab>-->
+
+
+</div>
+
+
+</app-page-scroll-layout>

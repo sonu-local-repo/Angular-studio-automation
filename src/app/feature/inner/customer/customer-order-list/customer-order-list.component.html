@@ -1,0 +1,68 @@
+<div class="custom-table-container">
+  <mat-form-field appearance="legacy" class="right">
+    <mat-label>Search....</mat-label>
+    <input matInput  #searchRef>
+  </mat-form-field>
+  <table mat-table [dataSource]="orderList" class="custom-table" matSort matSortActive="id" matSortDisableClear
+      matSortDirection="desc">
+
+      <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Order#</th>
+          <td  mat-cell *matCellDef="let order">{{order.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+          <td mat-cell *matCellDef="let order">{{order.type}} {{order.subType?'-':''}} {{order.subType}}</td>
+      </ng-container>
+      <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+          <td mat-cell *matCellDef="let order">{{order.customerName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Status</th>
+          <td mat-cell *matCellDef="let order" fxHide fxShow.gt-xs>{{order.status}}</td>
+      </ng-container>
+      <ng-container matColumnDef="dueDate">
+          <th mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Due Date</th>
+          <td mat-cell *matCellDef="let order" fxHide fxShow.gt-xs>{{order.dueDate | date}}</td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Phone</th>
+          <td mat-cell *matCellDef="let order" fxHide fxShow.gt-xs>{{order.phone}}</td>
+      </ng-container>
+      <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Priority</th>
+          <td mat-cell *matCellDef="let order" fxHide fxShow.gt-xs>
+              <button mat-flat-button class="priority-indicator"
+                  [color]="order.priority === 'High' ? 'warn': order.priority === 'Medium'? 'primary' : ''">{{order.priority}}</button>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Created Date</th>
+          <td mat-cell *matCellDef="let order" fxHide fxShow.gt-xs>{{order.createdAt | date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let order" class="order-action">
+            <button mat-button (click)="navigateTo(order.id)" matTooltip="View" class="table-action">
+                <mat-icon>visibility </mat-icon>
+            </button>
+
+        </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
+      </tr>
+      <tr mat-row class="order-row" *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+  </table>
+  <mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               showFirstLastButtons
+               [pageSizeOptions]="pageSizeOptions"
+              >
+</mat-paginator>
+
+</div>

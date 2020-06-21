@@ -1,0 +1,14 @@
+<div class="confirm-container">
+  <div class="form-column">
+    <div class="form-content">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        {{message}}
+      </div>
+    </div>
+    <div fxLayoutAlign="end center" [ngStyle]="{'margin-top':'30px'}">
+      <button mat-flat-button color="primary" class="ok-btn" (click)="onOk()">
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

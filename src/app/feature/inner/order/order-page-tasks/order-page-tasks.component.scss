@@ -1,0 +1,31 @@
+.page-tasks-item {
+  padding: 3px 3px 3px 10px;
+  background-color: grey;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.page-tasks-sub-item {
+  padding: 3px 3px 3px 50px;
+  margin-bottom: 5px;
+  line-height: 30px;
+  background-color: #f3f1f1;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.page-chip {
+  background-color: white;
+  border: solid 1px;
+  border-color: #e7e7e7;
+}
+
+.multi-page-chip {
+  width: 85px;
+  justify-content: space-evenly;
+  background-color: #b7f3b7;
+  border-bottom: solid;
+}
+

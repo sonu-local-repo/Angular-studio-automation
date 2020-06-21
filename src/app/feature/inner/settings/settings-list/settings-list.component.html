@@ -1,0 +1,50 @@
+<app-page-scroll-layout>
+    <mat-tab-group>
+        <mat-tab label="Page Configuration">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between center">
+
+                <div fxFlex="45">
+                    <div *ngFor="let module of modules" class="page-config-box">
+                        <div class="page-config-box-name"> {{module.moduleName}}</div>
+                        <div *ngFor="let view of module.views" fxLayout="row" fxLayoutAlign="space-between stretch"
+                            class="page-config-box-details">
+                            <div fxFlex="100" style="overflow-wrap: break-word;">
+                                {{view.name}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxFlex="45">
+                    <mat-button-toggle-group name="screenType" #group="matButtonToggleGroup" [value]="screenType"
+                        (change)="onValChange(group.value)">
+                        <mat-button-toggle value="Module">Module</mat-button-toggle>
+                        <mat-button-toggle value="View">Page</mat-button-toggle>
+                    </mat-button-toggle-group>
+                    <form [formGroup]="pageConfigForm" fxLayout="column" fxLayoutAlign="space-evenly start">
+                        <mat-form-field *ngIf="screenType === 'View'">
+                            <mat-label>Module</mat-label>
+                            <mat-select formControlName="module" disableOptionCentering>
+                                <mat-option *ngFor="let module of modules" [value]="module">
+                                    {{ module.moduleName }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="viewName">
+                        </mat-form-field>
+                        <button type="button" mat-raised-button color="accent" (click)="addNewScreen()">ADD</button>
+                    </form>
+                </div>
+            </mat-card>
+        </mat-tab>
+      <mat-tab  label="Service Category">
+        <app-services type="Parent"></app-services>
+      </mat-tab>
+
+      <mat-tab  label="List of Values">
+        <app-service-details type="child"></app-service-details>
+      </mat-tab>
+
+    </mat-tab-group>
+</app-page-scroll-layout>

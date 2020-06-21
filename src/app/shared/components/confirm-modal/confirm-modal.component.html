@@ -1,0 +1,15 @@
+<div class="confirm-container">
+  <div class="form-column">
+    <div class="form-content">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        {{view.question}}
+      </div>
+    </div>
+    <div fxLayoutAlign="end center" [ngStyle]="{'margin-top':'10px'}">
+      <button mat-button type="button" color="warn" class="cancel-btn" (click)="onCancel()">{{view.no}}</button>
+      <button mat-button type="button" color="primary" class="confirm-btn" (click)="onConfirm()">
+        {{view.yes}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<app-page-scroll-layout>
+  <!-- <div fxLayout="column" fxLayoutAlign="end" *ngIf= "enable && orderDetails && orderDetails.status === 'Created' && orderDetails.subType === 'Album'">
+    <button mat-button mat-raised-button color="accent" (click)="processOrder(orderDetails.id)">Process Order</button>
+  </div>
+   -->
+<!-- <div>
+    <button mat-button (click)="savePDF()">Create PDF</button>
+</div> -->
+    <app-order-profile-summary [orderDetails]="orderDetails"></app-order-profile-summary>
+    <mat-tab-group #tabViews >
+        <mat-tab label="More Details" >
+            <div fxLayout="row" fxLayoutAlign="space-between stretch" style="padding-top: 20px;">
+                <mat-card fxFlex="49" class="mar-t-5 mar-b-5">
+                    <ul class="custom-list">
+                        <li>
+                            <div class="label mat-body-strong">Priority:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.priority}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Due Date:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.dueDate | date}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Order Taken By:</div>
+                            <div class="text mat-body-strong"> {{orderDetails?.createdBy}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Size:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.size}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Quantity:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.quantity}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Album Type:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.value0}}</div>
+                        </li>
+
+                        <li>
+                            <div class="label mat-body-strong">Cover Type:</div>
+                            <div class="text mat-body-strong">{{orderDetails?.value1}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Bag Type:</div>
+                            <div class="text mat-body-strong"> {{orderDetails?.value2}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Couple Name:</div>
+                            <div class="text mat-body-strong"> {{orderDetails?.value3}}</div>
+                        </li>
+                        <li>
+                            <div class="label mat-body-strong">Colour:</div>
+                            <div class="text mat-body-strong"> {{orderDetails?.value4}}</div>
+                        </li>
+                    </ul>
+                </mat-card>
+                <mat-card fxFlex="49" class="mar-t-5 mar-b-5">
+                    <mat-card-subtitle class="mat-body-strong">Notes:</mat-card-subtitle>
+                    <mat-card-content fxLayout="column">
+                        <label>{{orderDetails?.notes}}</label>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            
+        </mat-tab>
+
+        <mat-tab label="Page Details" *ngIf="orderDetails?.subType==='Album'">
+            <mat-card>
+                <app-order-page-tasks [pages]="orderDetails.pages" [isReadonly]="true"></app-order-page-tasks>
+            </mat-card>
+        </mat-tab>
+
+        <mat-tab *ngIf="orderDetails?.parentOrderId===0">
+            <ng-template matTabLabel>
+                <span matBadge="{{orderDetails?.relatedOrderCount}}" matBadgeColor="warn" matBadgeOverlap="false">
+                    Sub Orders</span>
+            </ng-template>
+            <app-sub-order-list-table-view [parentOrderId]="orderId" [isEditMode]="true" [parentOrder]="orderDetails">
+            </app-sub-order-list-table-view>
+        </mat-tab>
+
+        <mat-tab label="Payment Details">
+        </mat-tab>
+      <mat-tab label="Tasks" *ngIf="orderDetails?.subType==='Album'">
+        <app-order-tasks [orderId]="orderId"></app-order-tasks>
+      </mat-tab>
+      <mat-tab label="Attachments" *ngIf="orderDetails?.subType==='Album'">
+        <app-order-attachment [orderId]="orderId"></app-order-attachment>
+      </mat-tab>
+
+    </mat-tab-group>
+    <div fxLayout="row">
+        <app-order-summary-pdf [orderId]="orderId"></app-order-summary-pdf>
+    </div>
+</app-page-scroll-layout>

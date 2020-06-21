@@ -1,0 +1,45 @@
+<mat-card fxLayout="row" class="profile-summary-card employee-card">
+    <div fxFlex="40" fxLayout="row" class="profile-snap-left">
+        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" class="profile-image">
+        <div fxFlex>
+            <h3>{{employeeDetails?.firstName}} {{employeeDetails?.lastName}}</h3>
+            <div class="mat-body-strong">Employee # : {{employeeDetails?.employeeNo}}</div>
+            <div class="mat-small text-muted">{{getEmployeePositions()}}</div>
+            <div class="mat-small text-muted">Date of Join : {{employeeDetails?.doj| date}}</div>
+        </div>
+    </div>
+    <div fxFlex="57" class="profile-snap-right">
+        <ul class="profile-snap-list">
+            <li>
+                <mat-icon class="profile-snap-icon">phone</mat-icon>
+                <div class="title mat-body-strong">Phone:</div>
+                <div class="text mat-body-strong">{{employeeDetails?.phone}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">email</mat-icon>
+                <div class="title mat-body-strong">Email:</div>
+                <div class="text mat-body-strong">{{employeeDetails?.email}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">calendar_today</mat-icon>
+                <div class="title mat-body-strong">Birthday:</div>
+                <div class="text mat-body-strong">{{employeeDetails?.dob| date}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">home_work</mat-icon>
+                <div class="title mat-body-strong">Address:</div>
+                <div class="text mat-body-strong">{{getEmployeeAddress()}}</div>
+            </li>
+            <li>
+                <mat-icon class="profile-snap-icon">wc</mat-icon>
+                <div class="title mat-body-strong">Gender:</div>
+                <div class="text mat-body-strong">{{employeeDetails?.gender}}</div>
+            </li>
+        </ul>
+    </div>
+    <div fxFlex="3" class="profile-edit" *ngIf="permissionService.canEdit(screenName.Employee_Profile)">
+        <button mat-mini-fab color="accent" (click)="editEmployeeProfile()" matTooltip="Edit Profile">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</mat-card>

@@ -1,0 +1,32 @@
+.effects{
+
+
+  min-height: 30vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+ /* flex-direction: row;
+  justify-content: center;
+  align-content: center;*/
+}
+
+.popup {
+  position: absolute;
+  max-width: 800px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.effects-child{
+  display: grid;
+  cursor: pointer;
+
+  /*flex-direction: row;
+  justify-content: center;
+  align-content: center;*/
+}
+.effects-child:hover{
+  color: #2f7cde;
+}
+.mat-dialog-container{
+  margin-left: 20%;
+}

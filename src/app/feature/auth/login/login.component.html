@@ -1,0 +1,75 @@
+<div style="width: 100%; height:100vh">
+  <div
+    style="width: 50%; height: 100%; background: linear-gradient(10deg, #205cc2, #4dd0d2) ; float: left;"
+  >
+    <div class="login-message">
+      <!-- <div style="font-size: 35px;  display: flex; justify-content: center;">
+        WELCOME TO
+      </div> -->
+      <br />
+      <div>
+        <img src='../../../../assets/images/Logo.png' width="40%" style="display: block; margin-left: auto; margin-right: auto;">
+      </div>
+      <div style="font-size: 3.5em;  display: flex; justify-content: center; font-family: 'Montserrat';">
+        SMART STUDIO
+      </div>
+    </div>
+  </div>
+  <div style="width: 50%; height: 100%; float:right;">
+    <div class="login-card">
+      <!-- <div style="font-size: 30px; padding-bottom: 30px; justify-content: center; display: flex;">LOGIN</div> -->
+      <form [formGroup]="loginForm" autocomplete="off">
+        <!-- <mat-card-title>Login</mat-card-title> -->
+        <mat-card-content fxLayout="column">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" />
+            <span matPrefix style="padding-right: 20px;"
+              ><mat-icon>perm_identity</mat-icon></span
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="passwordVisible ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="off"
+            />
+            <span matPrefix style="padding-right: 20px;"
+              ><mat-icon>lock</mat-icon></span
+            >
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="passwordVisible = !passwordVisible"
+            >
+              <mat-icon>{{
+                passwordVisible ? "visibility" : "visibility_off"
+              }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-error *ngIf="loginFailed">Login Failed..!</mat-error>
+          <div fxLayout="row" fxLayoutAlign="space-between end">
+            <div fxLayout="column">
+              <div
+                style="text-align: right; cursor: pointer; font-style: italic;"
+                (click)="onClick_forgotPassword()"
+              >
+                Forgot Password?
+              </div>
+            </div>
+            <div fxLayout="column">
+              <div>
+                <button class="btn-login" (click)="login()">
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </form>
+    </div>
+  </div>
+</div>

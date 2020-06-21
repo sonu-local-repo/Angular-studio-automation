@@ -1,0 +1,20 @@
+
+<form [formGroup]="formGroup">
+  <div >
+    <mat-card fxFlex="100" class="mar-t-5 mar-b-5">
+      <mat-form-field  fxLayout="column" >
+         <textarea matInput class="fullHeight" formControlName="notes"
+          maxlength="255" placeholder="Notes"></textarea>
+      </mat-form-field>
+
+      <div>
+        <button class = 'mr' mat-button mat-raised-button color="accent" (click)="cancelTask()">Cancel</button>
+        <button mat-button mat-raised-button color="primary" (click)="completeTask(notes)">Submit & Complete</button>
+      </div>
+
+
+    </mat-card>
+
+
+  </div>
+</form>

@@ -1,0 +1,15 @@
+@import "../../customer/customer-profile-summary/customer-profile-summary.component.scss";
+
+@mixin order-status {
+  font-weight: 500;
+}
+
+.order-status__created {
+  @include order-status;
+  color: green;
+}
+
+.order-status__cancelled {
+  @include order-status;
+  font-weight: 500;
+}

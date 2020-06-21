@@ -1,0 +1,103 @@
+<mat-nav-list fxLayout="column" fxLayoutAlign="space-between stretch" style="padding-top: 20px;">
+  <perfect-scrollbar>
+    <mat-nav-list>
+      <span *ngFor="let menu of sideMenuList">
+        <span *ngIf="menu.isVisible?.value">
+          <!-- CHILD MENU -->
+          <span
+            *ngIf="menu.subItems && menu.subItems.length > 0; else menuItem"
+          >
+            <mat-accordion>
+              <mat-expansion-panel class="expansion-panel">
+                <mat-expansion-panel-header
+                  class="mat-expansion-panel-header-custom"
+                >
+                  <mat-panel-title style="height: 48px;">
+                    <div
+                      fxLayout="row"
+                      fxLayoutAlign="space-between center"
+                      class="mat-panel-title-custom"
+                    >
+                      <mat-icon style="padding-right: 10px;">{{
+                        menu.icon
+                      }}</mat-icon>
+                      <span *ngIf="menu.badge != 0; else noNotification">
+                        <span
+                          matBadge="{{ menu.badge }}"
+                          matBadgeOverlap="false"
+                          matBadgeColor="accent"
+                          >{{ menu.name }}</span
+                        >
+                      </span>
+                      <ng-template #noNotification>
+                        {{ menu.name }}
+                      </ng-template>
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span *ngFor="let subItem of menu.subItems">
+                  <span *ngIf="subItem.isVisible?.value">
+                  <mat-list-item
+                    routerLink="/{{ subItem.url }}"
+                    class="sidenav-child-item"
+                    [ngClass]="{ 'active-menu': isModuleSelected(subItem) }"
+                  >
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <!-- <mat-icon>{{ subItem.icon }}</mat-icon> -->
+                      <div style="font-size: 14px;">
+                        <span *ngIf="subItem.badge != 0; else noNotification">
+                          <span
+                            matBadge="{{ subItem.badge }}"
+                            matBadgeOverlap="false"
+                            matBadgeColor="accent"
+                            >{{ subItem.name }}</span
+                          >
+                        </span>
+                        <ng-template #noNotification>
+                          {{ subItem.name }}
+                        </ng-template>
+                      </div>
+                    </div>
+                  </mat-list-item>
+                </span>
+                </span>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </span>
+
+          <!-- MAIN MENU -->
+          <ng-template #menuItem>
+            <mat-list-item
+              routerLink="/{{ menu.url }}"
+              class="sidenav-item"
+              [ngClass]="{ 'active-menu': isModuleSelected(menu) }"
+            >
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon style="padding-right: 10px;">{{
+                  menu.icon
+                }}</mat-icon>
+                <span *ngIf="menu.badge != 0; else noNotification">
+                  <span
+                    matBadge="{{ menu.badge }}"
+                    matBadgeOverlap="false"
+                    matBadgeColor="accent"
+                    >{{ menu.name }}</span
+                  >
+                </span>
+                <ng-template #noNotification>
+                  {{ menu.name }}
+                </ng-template>
+              </div>
+            </mat-list-item>
+          </ng-template>
+        </span>
+      </span>
+    </mat-nav-list>
+  </perfect-scrollbar>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="user-profile">
+    <div class="user-profile__text">{{ userName }}</div>
+    <mat-icon class="user-profile__icon" (click)="logout()"
+      >power_settings_new</mat-icon
+    >
+  </div>
+</mat-nav-list>

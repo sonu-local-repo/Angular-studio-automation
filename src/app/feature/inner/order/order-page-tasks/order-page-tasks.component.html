@@ -1,0 +1,40 @@
+  <div style="width: 100%;">
+  <div *ngFor="let mainTask of pagesGroupedByType; trackBy: trackByFn">
+    <div *ngFor="let subTask of mainTask.child">
+        <div style="padding-top:20px"></div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title style="font-size: 15px;">
+            {{ subTask.type }}</mat-card-title
+          >
+        </mat-card-header>
+
+        <mat-card-content *ngIf="!collapsed">
+          <mat-chip-list *ngIf="isReadonly">
+            <mat-chip
+              *ngFor="let task of subTask.child"
+              class="page-chip"
+              [ngClass]="{ 'multi-page-chip': isMultiPage(task) }"
+            >
+              {{ task }}
+            </mat-chip>
+          </mat-chip-list>
+
+          <mat-chip-list *ngIf="!isReadonly">
+            <mat-chip *ngFor="let task of subTask.child" class="page-chip">
+              {{ task.pageNo }}
+              <mat-icon
+                matChipRemove
+                (click)="
+                  onRemovePage(task, $event)
+                "
+              >
+                close
+              </mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

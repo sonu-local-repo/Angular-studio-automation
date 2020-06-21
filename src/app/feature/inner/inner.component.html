@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Side Nav-->
+  <mat-sidenav
+    #sidenav
+    class="sidenav"
+    fixedInViewport
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false || leftNavOpen"
+  >
+    <mat-toolbar class="brand-name"
+      ><span>{{ brandName }}</span></mat-toolbar
+    >
+    <app-sidenav-list></app-sidenav-list>
+  </mat-sidenav>
+  <!-- / Side Nav-->
+  <mat-sidenav-content>
+    <!-- Toolbar-->
+    <button
+        mat-icon-button fxHide
+        fxShow.lt-md
+        class="toggle-icon"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    <!-- <app-toolbar></app-toolbar> -->
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="breadcrumb-row">
+        <app-breadcrumb></app-breadcrumb>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- / Toolbar-->
+    <router-outlet *ngIf="!somethingWentWrong"></router-outlet>
+    
+    <app-something-went-wrong
+      *ngIf="somethingWentWrong"
+    ></app-something-went-wrong>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

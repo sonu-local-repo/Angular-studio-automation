@@ -1,0 +1,59 @@
+<form [formGroup]="addLovFormGroup" (keyup)="captureEvent($event)">
+  <div fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select matNativeControl formControlName="type" required>
+        <mat-option *ngFor="let item of lovType" value="{{ item }}">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+      <mat-error>This Field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Parent</mat-label>
+      <mat-select matNativeControl formControlName="subType">
+        <mat-option *ngFor="let item of parentLov" value="{{ item }}">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+      <mat-error>This Field is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field>
+      <mat-label>Value</mat-label>
+      <input matInput formControlName="value" required />
+      <mat-error>This Field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" />
+      <mat-error>This Field is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" style="padding-top: 20px; color: #757575">
+    <label>Status: </label>
+    <mat-radio-group formControlName="status" required>
+      <mat-radio-button
+        [checked]="activeStatus"
+        value="Active"
+        style="padding-left: 30px;"
+        >Active</mat-radio-button
+      >
+      <mat-radio-button [checked]="!activeStatus" value="Inactive" style="padding-left: 30px;"
+        >Inactive</mat-radio-button
+      >
+    </mat-radio-group>
+  </div>
+  <div fxLayout="row" *ngIf="message.length > 0" style="padding-top: 20px; color: red;">
+    {{ message }}
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px;">
+    <button mat-button mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-button (click)="createNewLov()">
+      Save
+    </button>
+  </div>
+</form>

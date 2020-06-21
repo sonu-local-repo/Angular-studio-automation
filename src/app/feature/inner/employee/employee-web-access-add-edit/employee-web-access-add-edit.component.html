@@ -1,0 +1,71 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="permission-box-details" *ngIf="!canAddNew">
+    <button mat-button color="primary" (click)="canAddNew=true">
+        <mat-icon>add</mat-icon>ADD NEW
+    </button>
+</div>
+
+<form [formGroup]="addWebAccessFormGroup">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="permission-box-details" *ngIf="canAddNew">
+        <div fxFlex="24">
+            <mat-form-field fxFlex>
+                <mat-label>Module</mat-label>
+                <mat-select disableOptionCentering formControlName="moduleName">
+                    <mat-option *ngFor="let module of screenModules" value="{{module.moduleName}}"
+                        (onSelectionChange)="onModuleSelected($event,module)">
+                        {{module.moduleName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addWebAccessFormGroup.controls['moduleName'].hasError('required')">Required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxFlex="24">
+            <mat-form-field fxFlex>
+                <mat-label>Page</mat-label>
+                <mat-select disableOptionCentering formControlName="viewName">
+                    <mat-option *ngFor="let view of screenViews" value="{{view.name}}"
+                        (onSelectionChange)="onViewSelected($event,view)">
+                        {{view.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addWebAccessFormGroup.controls['viewName'].hasError('required')">Required</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxFlex="40" class="permission-box-check">
+            <mat-checkbox formControlName="canView">View
+            </mat-checkbox>
+            <mat-checkbox formControlName="canEdit">Edit
+            </mat-checkbox>
+            <mat-checkbox formControlName="canDelete">
+                Delete
+            </mat-checkbox>
+            <button mat-button color="primary" (click)="addNewWebPermission()">
+                Save
+            </button>
+            <button mat-button color="warn" (click)="canAddNew=false">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
+
+<div *ngFor="let module of modules" class="permission-box">
+    <div class="permission-box-name"> {{module.moduleName}}</div>
+    <div *ngFor="let view of module.views" fxLayout="row" fxLayoutAlign="space-between stretch"
+        class="permission-box-details">
+        <div fxFlex="19" style="overflow-wrap: break-word;">
+            {{view.name}}</div>
+        <div fxFlex="79" class="permission-box-check">
+            <mat-checkbox [checked]="view.viewInt===true" (change)="view.viewInt = !view.viewInt">View
+            </mat-checkbox>
+            <mat-checkbox [checked]="view.editInt===true" (change)="view.editInt = !view.editInt">Edit
+            </mat-checkbox>
+            <mat-checkbox [checked]="view.deleteInt===true" (change)="view.deleteInt = !view.deleteInt">
+                Delete
+            </mat-checkbox>
+            <button mat-button color="primary" (click)="updateEmployeeWebAccess(view)">
+                <mat-icon>sync</mat-icon> Update
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="custom-table-container">
+  <h4 class="header">Employees</h4>
+
+  <table
+    mat-table
+    [dataSource]="employeeDetails"
+    matSort
+    matSortActive="firstName"
+    matSortDisableClear
+    matSortDirection="desc"
+    class="custom-table-container"
+  >
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.firstName + " " + element.lastName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="customer-action">
+        <button mat-button (click)="associateEmployee(element.id)">
+          <mat-icon class="table-action" matTooltip="Attach">
+            call_merge
+          </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      class="order-row"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+</div>

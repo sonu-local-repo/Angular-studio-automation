@@ -1,0 +1,6 @@
+<div class="add-tray" (mouseover)="showAddText=true" (mouseleave)="showAddText=false" (click)="add()">
+    <button mat-fab class="add-tray__btn">
+        <mat-icon>add</mat-icon>
+    </button>
+    <span class="add-tray__text" *ngIf="showAddText">{{text}}</span>
+</div>
