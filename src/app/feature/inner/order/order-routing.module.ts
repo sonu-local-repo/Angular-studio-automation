@@ -16,7 +16,7 @@ import { NavigationGuard } from '@core/services/navigation-guard.service';
                 data: {
                     breadcrumb: 'All',
                     screenId: 'Order_List',
-                    // permissionsRequired: [WebAccess.View]
+                    permissionsRequired: [WebAccess.View]
                 }
             },
             {
@@ -25,8 +25,8 @@ import { NavigationGuard } from '@core/services/navigation-guard.service';
                 canDeactivate: [CanDeactivateGuardService],
                 data: {
                     breadcrumb: 'New',
-                    screenId: 'Order_Profile',
-                    // permissionsRequired: [WebAccess.Edit]
+                    screenId: 'Order_List',
+                    permissionsRequired: [WebAccess.Edit]
                 }
             },
             {
@@ -34,8 +34,9 @@ import { NavigationGuard } from '@core/services/navigation-guard.service';
                 component: OrderProfileComponent,
                 data: {
                     breadcrumb: ':orderId',
-                    screenId: 'Order_Profile',
-                    // permissionsRequired: [WebAccess.View]
+                    // screenId: 'Order_Profile',
+                    screenId: 'Order_List',
+                    permissionsRequired: [WebAccess.View]
                 },
 
             },

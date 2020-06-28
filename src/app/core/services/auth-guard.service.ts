@@ -17,8 +17,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   ) { }
 
   private checkGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    console.log("Is Logged In" +this.authService.isLoggedIn());
     if (!this.authService.isLoggedIn()) {
-      return this.authService.getEmployeeAuthorities().pipe(
+      return this.authService.getEmployeePermissions().pipe(
         map(userInfo => {
           return this.authService.isLoggedIn();
         }),
@@ -27,15 +28,26 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
           return of(false);
         })
       );
-    } else {
 
+      /*return this.authService.getEmployeeAuthorities().pipe(
+        map(userInfo => {
+          return this.authService.isLoggedIn();
+        }),
+        catchError((err) => {
+          this.router.navigateByUrl(`auth/login`);
+          return of(false);
+        })
+      );*/
+    } else {
       const permissionsRequired = route.data.permissionsRequired;
+      console.log("Permission Required => " + permissionsRequired);
       const getUserScreenPermissions = this.permissionService.getUserScreenPermissions(route.data.screenId);
       let authorised = true;
-
       if (permissionsRequired) {
         permissionsRequired.map((permission) => {
+
           authorised = authorised && getUserScreenPermissions && getUserScreenPermissions[permission];
+          console.log("authorised");
         });
       }
 

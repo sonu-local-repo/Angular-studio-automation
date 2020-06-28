@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
 import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
 import { CustomerService } from '../customer.service';
+import {PermissionService} from "@core/services/permission.service";
+import {ScreenName} from "@shared/enums/screen-name.enum";
 
 @Component({
   selector: 'app-customer-list',
@@ -14,8 +16,10 @@ export class CustomerListComponent implements OnInit {
 
   searchCounter = 0;
   searchForm: FormGroup;
+  screenName= ScreenName;
 
   constructor(
+    private permissionService: PermissionService,
     private customerService: CustomerService,
     private dialog: MatDialog,
     private modalService: ModalService) { }

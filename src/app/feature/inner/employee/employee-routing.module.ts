@@ -14,7 +14,7 @@ import { ScreenName } from '@shared/enums/screen-name.enum';
                 data: {
                     breadcrumb: 'All',
                     screenId: ScreenName.Employee_List,
-                    // permissionsRequired: [WebAccess.View]
+                    permissionsRequired: [WebAccess.View]
                 }
             },
             {
@@ -23,7 +23,7 @@ import { ScreenName } from '@shared/enums/screen-name.enum';
                 data: {
                     breadcrumb: ':employeeName',
                     screenId: ScreenName.Employee_Profile,
-                    // permissionsRequired: [WebAccess.View]
+                    permissionsRequired: [WebAccess.View]
                 }
             }
         ])

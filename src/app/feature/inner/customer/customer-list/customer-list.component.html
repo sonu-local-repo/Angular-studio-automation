@@ -67,7 +67,8 @@
       </div>
       <div fxLayout="column">
         <div>
-          <button mat-raised-button color="primary" (click)="addNewCustomer()">
+          <button mat-raised-button color="primary" (click)="addNewCustomer()"
+                  *ngIf="permissionService.canCreateOf(screenName.Customer_List) | async">
             Create Customer
           </button>
         </div>

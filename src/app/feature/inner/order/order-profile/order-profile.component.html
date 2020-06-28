@@ -62,7 +62,7 @@
                     </mat-card-content>
                 </mat-card>
             </div>
-            
+
         </mat-tab>
 
         <mat-tab label="Page Details" *ngIf="orderDetails?.subType==='Album'">
@@ -80,7 +80,7 @@
             </app-sub-order-list-table-view>
         </mat-tab>
 
-        <mat-tab label="Payment Details">
+        <mat-tab label="Payment Details" *ngIf="this.permissionService.canEditOf(screenName.Order_List) | async ">
         </mat-tab>
       <mat-tab label="Tasks" *ngIf="orderDetails?.subType==='Album'">
         <app-order-tasks [orderId]="orderId"></app-order-tasks>

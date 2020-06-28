@@ -6,6 +6,8 @@ import { Order } from '../models/order';
 import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
 import { OrderWorkflowComponent } from '../order-workflow/order-workflow.component';
+import {PermissionService} from "@core/services/permission.service";
+import {ScreenName} from "@shared/enums/screen-name.enum";
 
 @Component({
   selector: 'app-sub-order-list-table-view',
@@ -20,12 +22,14 @@ export class SubOrderListTableViewComponent implements OnInit {
   @Input() parentOrderId: number;
   @Input() isEditMode: boolean;
   @Input() parentOrder: Order;
+  screenName=ScreenName;
 
   constructor(
     private orderService: OrderService,
     private modalService: ModalService,
     private dialog: MatDialog,
     private router: Router,
+    public permissionService: PermissionService,
   ) { }
 
   /* Lifecycle Hooks*/

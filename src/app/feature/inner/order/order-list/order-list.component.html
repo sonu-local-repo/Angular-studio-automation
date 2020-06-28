@@ -3,6 +3,7 @@
     [formGroup]="searchForm"
     autocomplete="off"
     style="padding: 0 10px; font-size: 12px;"
+    class="order-search"
   >
     <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
       <div fxLayout="column" fxFlex="80">
@@ -23,7 +24,7 @@
           </button>
         </mat-form-field>
       </div>
-      <div fxLayout="column">
+      <div fxLayout="column" *ngIf="this.permissionService.canCreateOf(screenName.Order_List)| async">
         <div>
           <button mat-raised-button color="primary" (click)="createNewOrder()">
             Create Order

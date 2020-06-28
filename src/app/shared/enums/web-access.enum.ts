@@ -1,5 +1,6 @@
 export enum WebAccess {
-    View = 'viewInt',
-    Edit = 'editInt',
-    Delete = 'deleteInt'
+    View = 'readInt',
+    Edit = 'updateInt',
+    Delete = 'deleteInt',
+    NEW = 'createInt'
 }

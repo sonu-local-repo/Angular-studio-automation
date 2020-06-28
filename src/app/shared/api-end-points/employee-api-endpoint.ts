@@ -1,5 +1,6 @@
 import { API_URL_DOMAIN } from '../configs/globals';
 import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
+import {EmployeeResponsibilityAssoc} from "../../feature/inner/employee/models/employee-responsibility-assoc";
 
 export const EmployeeAPI = {
     createEmployeeUrl() {
@@ -28,4 +29,10 @@ export const EmployeeAPI = {
     getEmployeeScreens(employeeId: number) {
         return `${API_URL_DOMAIN}/org/employee/${employeeId}/screenviews`;
     },
+  associateResponsibilityUrl() {
+      return `${API_URL_DOMAIN}/org/employee/assoc/responsibility`
+  },
+  deleteEmployeeResponsibilityAssociationUrl(employeeRes: EmployeeResponsibilityAssoc) {
+    return `${API_URL_DOMAIN}/org/employee/${employeeRes.employeeId}/responsibility/${employeeRes.responsibilityId}`
+  }
 };

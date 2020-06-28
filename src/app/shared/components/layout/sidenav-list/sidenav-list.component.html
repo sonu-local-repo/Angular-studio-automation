@@ -2,7 +2,7 @@
   <perfect-scrollbar>
     <mat-nav-list>
       <span *ngFor="let menu of sideMenuList">
-        <span *ngIf="menu.isVisible?.value">
+        <span *ngIf="menu.isVisible | async">
           <!-- CHILD MENU -->
           <span
             *ngIf="menu.subItems && menu.subItems.length > 0; else menuItem"

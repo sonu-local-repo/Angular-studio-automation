@@ -16,6 +16,7 @@ export class AuthService {
 
   /* Declaring Observables*/
   private employeeAuthorities = new ReplaySubject<EmployeeAuthorities>(1);
+  private employeePermissions = new ReplaySubject<EmployeeAuthorities>(1);
   employeeAuthorities$ = this.employeeAuthorities.asObservable();
 
   constructor(
@@ -28,6 +29,15 @@ export class AuthService {
 
   getEmployeeAuthorities(): Observable<EmployeeAuthorities> {
     return this.http.get<EmployeeAuthorities>(AuthAPI.getEmployeeAuthoritiesUrl())
+      .pipe(
+        tap((data) => {
+          this.loggedInUser = data;
+          this.employeeAuthorities.next(data);
+          this.loggedIn = data && data.employeeId !== 0;
+        }));
+  }
+  getEmployeePermissions():Observable<EmployeeAuthorities> {
+    return this.http.get<EmployeeAuthorities>(AuthAPI.getEmployeePermissionsUrl())
       .pipe(
         tap((data) => {
           this.loggedInUser = data;

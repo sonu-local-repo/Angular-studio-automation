@@ -26,7 +26,6 @@ export class EmployeeProfileSummaryComponent implements OnInit {
 
   /* Lifecycle Hooks */
   ngOnInit() {
-
   }
 
   /* Public Methods */

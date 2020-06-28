@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { OrderWorkflowComponent } from '../order-workflow/order-workflow.component';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { fromEvent } from 'rxjs';
+import {PermissionService} from "@core/services/permission.service";
+import { ScreenName } from '@shared/enums/screen-name.enum';
 
 @Component({
   selector: 'app-order-list',
@@ -13,11 +15,13 @@ import { fromEvent } from 'rxjs';
 export class OrderListComponent implements OnInit, AfterViewInit {
   searchCounter = 0;
   searchForm: FormGroup;
+  screenName = ScreenName;
   @ViewChild('searchRef', { static: true }) searchRef: ElementRef;
 
   constructor(
     private router: Router,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    public permissionService: PermissionService
   ) { }
 
   /* Lifecycle Hooks */

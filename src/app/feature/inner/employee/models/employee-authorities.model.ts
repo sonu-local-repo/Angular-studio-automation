@@ -5,5 +5,6 @@ export class EmployeeAuthorities {
     public lastName: string;
     public orgId: string;
     public views: any[];
+    public viewsList: any[];
     public positions: any[];
 }

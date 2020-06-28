@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
 import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
+import {PermissionService} from "@core/services/permission.service";
+import {ScreenName} from "@shared/enums/screen-name.enum";
 
 @Component({
   selector: 'app-employee-list',
@@ -13,15 +15,18 @@ export class EmployeeListComponent implements OnInit {
 
   searchCounter = 0;
   searchForm: FormGroup;
+  screenName = ScreenName;
 
   constructor(
     private dialog: MatDialog,
-    private modalService: ModalService
+    private modalService: ModalService,
+    public permissionService: PermissionService,
   ) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
     this.buildForm();
+    console.log(`Employee can edit ${ this.permissionService.canEdit(ScreenName.Employee_Profile)}`)
   }
 
   /* Public Methods */

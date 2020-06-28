@@ -8,6 +8,7 @@ import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { Observable } from 'rxjs';
 import { EmployeeScreenViewGroup } from '../settings/models/employee-screen-view-group.model';
 import { EmployeeScreenView } from '../settings/models/employee-screen-view.model';
+import {EmployeeResponsibilityAssoc} from "./models/employee-responsibility-assoc";
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,12 @@ export class EmployeeService {
 
   updateEmployeeView(view: EmployeeScreenView) {
     return this.http.put<EmployeeScreenViewGroup[]>(ScreenAPI.updateEmployeeViewUrl(view.id), view);
+  }
+  associateResponsibility(data: EmployeeResponsibilityAssoc):Observable<any>{
+    return this.http.post<any>(EmployeeAPI.associateResponsibilityUrl(), data);
+  }
+
+  deleteEmployeeResponsibilityAssociation(employeeRes: EmployeeResponsibilityAssoc) {
+    return this.http.delete(EmployeeAPI.deleteEmployeeResponsibilityAssociationUrl(employeeRes))
   }
 }

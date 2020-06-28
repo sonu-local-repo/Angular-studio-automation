@@ -12,6 +12,8 @@ import * as jspdf from 'jspdf';
 import { OrderAttachment } from '../models/order-attachment';
 import { TaskService } from '../../tasks/task.service';
 import { formatDate } from '@angular/common';
+import {PermissionService} from "@core/services/permission.service";
+import {ScreenName} from "@shared/enums/screen-name.enum";
 @Component({
   selector: 'app-order-profile',
   templateUrl: './order-profile.component.html',
@@ -24,6 +26,7 @@ export class OrderProfileComponent implements OnInit {
   subOrderList: Order[];
   pagesGroupedByType: any = [];
   enable = true;
+  screenName= ScreenName;
 
   @ViewChild('tabViews', { static: false }) tabViews: MatTabGroup;
 
@@ -33,7 +36,8 @@ export class OrderProfileComponent implements OnInit {
     private breadcrumbService: BreadcrumbService,
     private errorService: ErrorService,
     private subjectService: SubjectService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    public permissionService:PermissionService,
 
   ) { }
 

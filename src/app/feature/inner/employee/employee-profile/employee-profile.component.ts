@@ -45,6 +45,7 @@ export class EmployeeProfileComponent implements OnInit {
     this.employeeService.getEmployee(this.employeeId)
       .subscribe(
         (data) => {
+          console.log(data);
           this.employeeDetails = data;
           this.breadcrumbService.updateDynamicList(':employeeName', `${this.employeeDetails.firstName} ${this.employeeDetails.lastName}`);
         },

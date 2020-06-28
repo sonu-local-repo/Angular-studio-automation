@@ -8,4 +8,7 @@ export const AuthAPI = {
     getEmployeeAuthoritiesUrl() {
         return `${API_URL_DOMAIN}/org/employee/authorities`;
     },
+  getEmployeePermissionsUrl() {
+    return `${API_URL_DOMAIN}/org/employee/authoritiesList`;
+  },
 };

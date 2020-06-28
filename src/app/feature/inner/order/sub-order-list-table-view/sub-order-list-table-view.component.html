@@ -54,7 +54,7 @@
     </table>
 </div>
 <app-no-data-message [visible]="subOrderList?.length===0 && !isEditMode"></app-no-data-message>
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isEditMode">
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="this.permissionService.canEditOf(screenName.Order_Profile) | async" >
     <button mat-mini-fab color="accent" class="btn-add-sub-order" (click)="addSubOrder()"
         matTooltip="Create New Sub Order">
         <mat-icon>add</mat-icon>

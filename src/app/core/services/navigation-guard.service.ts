@@ -82,7 +82,9 @@ export class NavigationGuard implements CanActivate {
         // this.authService.employeeAuthorities$.subscribe((data: EmployeeAuthorities) => {
         //     console.log(data);
         // });
+
       this.authService.getEmployeeAuthorities().subscribe(data => {
+        // console.log(data.views-list);
       })
 
         return this.canShowMenu(route.routeConfig.path);
@@ -90,7 +92,7 @@ export class NavigationGuard implements CanActivate {
 
     public canShowMenu(route: string) {
         const employeeResp = 'Admin';
-        let routeFound = false;
+        let routeFound = true;
         if (this.resp.indexOf(employeeResp) > -1) {
             if (this.viewResp[employeeResp]) {
                 for (const element of this.viewResp[employeeResp]) {

@@ -57,7 +57,7 @@ export class OrderPageTasksComponent implements OnInit, OnChanges {
     const refinedMainList = [];
 
     for (const mainProp in mainList) {
-      debugger;
+      // debugger;
       if (Object.prototype.hasOwnProperty.call(mainList, mainProp)) {
         const childList = this.actionService.groupBy(mainList[mainProp], 'value');
         const refinedChild = [];
@@ -84,10 +84,10 @@ export class OrderPageTasksComponent implements OnInit, OnChanges {
   }
 
   private setSelectedPageInOneLine(list) {
-    debugger;
+    // debugger;
     let pageNumbersLine = '';
     const result = list.reduce((r, n) => {
-      debugger;
+      // debugger;
       const lastSubArray = r[r.length - 1];
 
       if (!lastSubArray || lastSubArray[lastSubArray.length - 1] !== n - 1) {

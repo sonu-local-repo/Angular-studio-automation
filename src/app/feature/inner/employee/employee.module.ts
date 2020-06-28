@@ -8,6 +8,8 @@ import { EmployeeProfileSummaryComponent } from './employee-profile-summary/empl
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeWebAccessAddEditComponent } from './employee-web-access-add-edit/employee-web-access-add-edit.component';
+import { EmployeeResponsibilityComponent } from './employee-responsibility/employee-responsibility.component';
+import { ResponsibilityListComponent } from './responsibility-list/responsibility-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { EmployeeWebAccessAddEditComponent } from './employee-web-access-add-edi
     EmployeeProfileComponent,
     EmployeeProfileSummaryComponent,
     EmployeeAddEditComponent,
-    EmployeeWebAccessAddEditComponent
+    EmployeeWebAccessAddEditComponent,
+    EmployeeResponsibilityComponent,
+    ResponsibilityListComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,7 @@ import { EmployeeWebAccessAddEditComponent } from './employee-web-access-add-edi
   ],
   entryComponents: [
     EmployeeAddEditComponent,
+    ResponsibilityListComponent,
     EmployeeWebAccessAddEditComponent
   ],
 })

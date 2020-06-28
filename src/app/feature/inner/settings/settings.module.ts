@@ -7,9 +7,16 @@ import { ServicesComponent } from './services/services.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { ServicesDialogComponent } from './services-dialog/services-dialog.component';
 import { CreateLovModelComponent } from './create-lov-model/create-lov-model.component';
+import { ResponsibilitiesComponent } from './responsibility-list/responsibilities.component';
+import { ResponsibilityProfileComponent } from './responsibility-profile/responsibility-profile.component';
+import { ResponsibilityViewComponent } from './responsibility-view/responsibility-view.component';
+import { ViewsComponent } from './views-list/views.component';
+import { ViewAddComponent } from './view-add/view-add.component';
 
 @NgModule({
-  declarations: [SettingsListComponent, ServicesComponent, ServiceDetailsComponent, ServicesDialogComponent, CreateLovModelComponent],
+  declarations: [SettingsListComponent,
+    ServicesComponent, ServiceDetailsComponent, ServicesDialogComponent,
+    CreateLovModelComponent, ResponsibilitiesComponent, ResponsibilityProfileComponent, ResponsibilityViewComponent, ViewsComponent, ViewAddComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,
@@ -17,7 +24,12 @@ import { CreateLovModelComponent } from './create-lov-model/create-lov-model.com
   ],
   entryComponents: [
     ServicesDialogComponent,
-    CreateLovModelComponent
+    CreateLovModelComponent,
+    ViewAddComponent,
+    ViewsComponent
+  ],
+  exports:[
+    ResponsibilitiesComponent
   ]
 })
 export class SettingsModule { }

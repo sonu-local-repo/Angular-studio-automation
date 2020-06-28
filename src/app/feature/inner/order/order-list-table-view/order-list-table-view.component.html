@@ -48,15 +48,15 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let order" class="order-action">
                 <button mat-button (click)="viewOrder(order.id)" matTooltip="View" class="table-action"
-                    *ngIf="permissionService.canView(screenName.Order_Profile)">
+                    *ngIf="permissionService.canViewOf(screenName.Order_Profile)">
                     <mat-icon>visibility </mat-icon>
                 </button>
                 <button mat-button (click)="editOrder(order.id, order.customerId, order)" matTooltip="Edit" class="table-action"
-                    *ngIf="permissionService.canEdit(screenName.Order_Profile)">
+                    *ngIf="permissionService.canEditOf(screenName.Order_Profile)">
                     <mat-icon>edit </mat-icon>
                 </button>
                 <button mat-button (click)="deleteOrder(order.id)" matTooltip="Delete" class="table-action"
-                    *ngIf="permissionService.canEdit(screenName.Order_Profile)">
+                    *ngIf="permissionService.canEditOf(screenName.Order_Profile)">
                     <mat-icon>delete </mat-icon>
                 </button>
             </td>

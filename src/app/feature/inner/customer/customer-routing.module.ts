@@ -5,6 +5,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { WebAccess } from '@shared/enums/web-access.enum';
 import { ScreenName } from '@shared/enums/screen-name.enum';
 import { OrderProfileComponent } from '../order/order-profile/order-profile.component';
+import {NavigationGuard} from "@core/services/navigation-guard.service";
+import {AuthGuardService} from "@core/services/auth-guard.service";
 
 @NgModule({
     imports: [
@@ -12,10 +14,11 @@ import { OrderProfileComponent } from '../order/order-profile/order-profile.comp
             {
                 path: '',
                 component: CustomerListComponent,
+
                 data: {
                     breadcrumb: 'All',
                     screenId: ScreenName.Customer_List,
-                    // permissionsRequired: [WebAccess.View]
+                    permissionsRequired: [WebAccess.View]
                 }
             },
             {
@@ -24,7 +27,7 @@ import { OrderProfileComponent } from '../order/order-profile/order-profile.comp
                 data: {
                     breadcrumb: ':customerName',
                     screenId: ScreenName.Customer_Profile,
-                    // permissionsRequired: [WebAccess.View]
+                    permissionsRequired: [WebAccess.View]
                 }
             }
         ])

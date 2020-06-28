@@ -21,11 +21,11 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let customer" class="customer-action">
                 <button mat-button (click)="showCustomerProfile(customer.id)" matTooltip="View" class="table-action"
-                    *ngIf="permissionService.canView(screenName.Customer_Profile)">
+                    *ngIf="permissionService.canViewOf(screenName.Customer_Profile) | async">
                     <mat-icon> visibility</mat-icon>
                 </button>
                 <button mat-button (click)="editCustomerProfile(customer)" matTooltip="Edit" class="table-action"
-                    *ngIf="permissionService.canEdit(screenName.Customer_Profile)">
+                    *ngIf="permissionService.canEditOf(screenName.Customer_Profile) | async">
                     <mat-icon>edit </mat-icon>
                 </button>
             </td>

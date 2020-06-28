@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { InnerComponent } from './inner.component';
 import { NavigationGuard } from '@core/services/navigation-guard.service';
 import { CardsComponent } from './reports/cards/cards.component';
+import {AuthGuardService} from "@core/services/auth-guard.service";
 
 @NgModule({
     imports: [
@@ -20,37 +21,37 @@ import { CardsComponent } from './reports/cards/cards.component';
                         path: 'employees',
                         loadChildren: './employee/employee.module#EmployeeModule',
                         data: { breadcrumb: 'Employees' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [NavigationGuard],
                     },
                     {
                         path: 'customers',
                         loadChildren: './customer/customer.module#CustomerModule',
                         data: { breadcrumb: 'Customers' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [NavigationGuard],
                     },
                     {
                         path: 'orders',
                         loadChildren: './order/order.module#OrderModule',
                         data: { breadcrumb: 'Orders' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [NavigationGuard],
                     },
                     {
                         path: 'pipeline',
                         loadChildren: './pipeline/pipeline.module#PipelineModule',
                         data: { breadcrumb: 'Pipeline' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [NavigationGuard],
                     },
                     {
                         path: 'tasks',
                         loadChildren: './tasks/tasks.module#TasksModule',
                         data: { breadcrumb: 'All Tasks' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [NavigationGuard],
                     },
                     {
                         path: 'settings',
                         loadChildren: './settings/settings.module#SettingsModule',
                         data: { breadcrumb: 'Settings' },
-                        canActivate: [NavigationGuard],
+                        // canActivate: [AuthGuardService],
                     },
                 ]
             },

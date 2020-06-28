@@ -11,6 +11,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { API_URL_DOMAIN } from '@shared/configs/globals';
 import { Task } from 'app/feature/inner/tasks/model/task';
 import { NavigationGuard } from '@core/services/navigation-guard.service';
+import {AuthGuardService} from "@core/services/auth-guard.service";
 
 @Component({
   selector: 'app-sidenav-list',
@@ -29,7 +30,7 @@ export class SidenavListComponent implements OnInit {
     private authService: AuthService,
     private permissionService: PermissionService,
     private http: HttpClient,
-    private navigationService: NavigationGuard
+    private navigationService: NavigationGuard,
   ) {
     this.pollOnLoad();
   }
@@ -48,21 +49,23 @@ export class SidenavListComponent implements OnInit {
         name: 'Orders',
         icon: 'playlist_add',
         url: 'orders',
-        isVisible: this.navigationService.canShowMenu('orders'),
+        isVisible: this.permissionService.canViewOf(ScreenName.Order_List) ,
+        // isVisible: of(true),
         badge: 0
       },
       {
         name: 'Customers',
         icon: 'transfer_within_a_station',
         url: 'customers',
-        isVisible: this.navigationService.canShowMenu('customers'),
+        isVisible: this.permissionService.canViewOf(ScreenName.Customer_List) ,
+        // isVisible: this.navigationService.canShowMenu('customers'),
         badge: 0
       },
       {
         name: 'Employees',
         icon: 'group',
         url: 'employees',
-        isVisible: this.navigationService.canShowMenu('employees'),
+        isVisible: this.permissionService.canViewOf(ScreenName.Employee_List) ,
         // isVisible: this.checkViewAccess(ScreenName.Employee_List),
         badge: 0
       },
@@ -70,7 +73,7 @@ export class SidenavListComponent implements OnInit {
         name: 'Pipeline',
         icon: 'menu',
         url: 'pipeline',
-        isVisible: this.navigationService.canShowMenu('pipeline'),
+        // isVisible: this.permissionService.canViewOf(ScreenName.Customer_List) ,
         badge: 0
       },
       {
@@ -100,13 +103,24 @@ export class SidenavListComponent implements OnInit {
         name: 'Settings',
         icon: 'build',
         url: 'settings',
-        isVisible: this.navigationService.canShowMenu('settings'),
-        badge: 0
-        // subItems:
-        //   [
-        //     { name: 'All Employees', icon: 'playlist_add', url: 'employees' },
-        //     { name: 'Add Employee', icon: 'playlist_add', url: 'employees/new' }
-        //   ]
+        isVisible: this.permissionService.canViewOf(ScreenName.Settings_ListOfValues) ,
+        badge: 0,
+        subItems: [
+          {
+            name: 'All Settings ',
+            icon: 'settings',
+            url: 'settings',
+            isVisible: this.permissionService.canViewOf(ScreenName.Settings_ListOfValues) ,
+            badge: 0
+          },
+          {
+            name: 'Responsibility ',
+            icon: 'settings',
+            url: 'settings/responsibility',
+            isVisible: this.permissionService.canViewOf(ScreenName.Settings_Responsibility) ,
+            badge: 0
+          },
+          ]
       },
     ];
   }
@@ -126,7 +140,7 @@ export class SidenavListComponent implements OnInit {
   isModuleSelected(menu) {
     const arr = menu.url.split('/');
     const moduleName = arr[arr.length - 1];
-    return this.router.url.includes(moduleName);
+    return this.router.url.endsWith(moduleName);
   }
 
   getAcronym() {

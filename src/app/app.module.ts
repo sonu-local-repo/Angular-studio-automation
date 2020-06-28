@@ -19,6 +19,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: SPINNER.threeBounce,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 5,
+
 };
 
 @NgModule({

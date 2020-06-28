@@ -3,11 +3,11 @@
     <mat-tab-group>
         <mat-tab label="Web Access">
             <mat-card>
-                <app-employee-web-access-add-edit></app-employee-web-access-add-edit>
+                <app-employee-web-access-add-edit ></app-employee-web-access-add-edit>
             </mat-card>
         </mat-tab>
-        <mat-tab label="Bank Details">
-            Bank Details
+        <mat-tab label="Web Security Details">
+            <app-employee-responsibility [employeeDetails]="employeeId"></app-employee-responsibility>
         </mat-tab>
         <mat-tab label="Attendance Details">
             Attendance Details

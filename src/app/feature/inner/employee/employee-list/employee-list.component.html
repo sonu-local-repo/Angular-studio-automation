@@ -68,7 +68,8 @@
       </div>
       <div fxLayout="column">
         <div>
-          <button mat-raised-button color="primary" (click)="addNewEmployee()">
+          <button mat-raised-button color="primary" (click)="addNewEmployee()"
+                  *ngIf="permissionService.canCreateOf(screenName.Employee_List) | async">
             Create Employee
           </button>
         </div>
