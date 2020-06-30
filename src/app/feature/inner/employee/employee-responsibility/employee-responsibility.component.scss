@@ -1,0 +1,21 @@
+.permission-box-details {
+  padding: 3px 3px 3px 50px;
+  margin-bottom: 5px;
+  line-height: 30px;
+  background-color: #f3f1f1;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+@import "../../../../shared/styles/table.scss";
+
+.priority-indicator {
+  width: 80px;
+  height: 25px;
+  line-height: 0px;
+  cursor: default;
+}
+.navigate-button{
+  cursor: pointer;
+  color: blue;
+}

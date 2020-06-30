@@ -1,0 +1,82 @@
+
+<!--<form [formGroup]="addWebAccessFormGroup">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="permission-box-details" >
+    <div fxFlex="24">
+      <mat-form-field fxFlex>
+        <mat-label>Module</mat-label>
+        <mat-select disableOptionCentering formControlName="moduleName">
+          <mat-option *ngFor="let module of screenModules" value="{{module.moduleName}}"
+                      (onSelectionChange)="onModuleSelected($event,module)">
+            {{module.moduleName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addWebAccessFormGroup.controls['moduleName'].hasError('required')">Required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex="24">
+      <mat-form-field fxFlex>
+        <mat-label>Page</mat-label>
+        <mat-select disableOptionCentering formControlName="viewName">
+          <mat-option *ngFor="let view of screenViews" value="{{view.name}}"
+                      (onSelectionChange)="onViewSelected($event,view)">
+            {{view.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addWebAccessFormGroup.controls['viewName'].hasError('required')">Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex="40" class="permission-box-check">
+      <mat-checkbox formControlName="canView">View
+      </mat-checkbox>
+      <mat-checkbox formControlName="canEdit">Edit
+      </mat-checkbox>
+      <mat-checkbox formControlName="canDelete">
+        Delete
+      </mat-checkbox>
+      <button mat-button color="primary" (click)="addNewWebPermission()">
+        Save
+      </button>
+      <button mat-button color="warn" (click)="canAddNew=false">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>-->
+
+<div *ngIf="screenViews">
+<div *ngFor="let module of screenViews" class="permission-box">
+
+  <div  fxLayout="row" fxLayoutAlign="space-between stretch"
+       class="permission-box-details">
+    <div fxFlex="19" style="overflow-wrap: break-word;">
+      {{module.viewsDetails.name}}</div>
+    <div fxFlex="79" class="permission-box-check">
+
+      <mat-checkbox [checked]="module.createInt===true" (change)="module.createInt = !module.createInt">Create
+      </mat-checkbox>
+      <mat-checkbox [checked]="module.readInt===true" (change)="module.readInt = !module.editInt">Read
+      </mat-checkbox>
+      <mat-checkbox [checked]="module.updateInt===true" (change)="module.updateInt = !module.updateInt">Update
+      </mat-checkbox>
+      <mat-checkbox [checked]="module.deleteInt===true" (change)="module.deleteInt = !module.deleteInt">
+        Delete
+      </mat-checkbox>
+      <button mat-button color="primary" (click)="updateEmployeeWebAccess(module)">
+        <mat-icon>sync</mat-icon> Update
+      </button>
+      <button mat-button color="primary" (click)="deleteViewAssociation(module)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center"  >
+  <button mat-mini-fab color="accent" class="btn-add-sub-order" (click)="addView()"
+          matTooltip="Add View">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+</div>

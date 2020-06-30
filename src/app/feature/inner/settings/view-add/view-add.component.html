@@ -1,0 +1,28 @@
+<form [formGroup]="viewFormGroup" autocomplete="off">
+<!--  <h2 mat-dialog-title>{{isEditMode?'Edit':'Add'}} Employee</h2>-->
+ <!-- <div fxLayout="row" fxLayoutAlign="center">
+    <mat-error *ngIf="errorMsg">{{ errorMsg }}</mat-error>
+  </div>-->
+  <mat-dialog-content class="mat-typography">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <mat-form-field fxFlex="49">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="viewFormGroup.controls['name'].hasError('required')">Required</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="49">
+          <mat-label>Status</mat-label>
+          <input matInput formControlName="status">
+          <mat-error *ngIf="viewFormGroup.controls['name'].hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" color="warn" (click)="onCancel()">Cancel</button>
+    <button mat-button type="submit" color="primary" (click)="onSave()">Save</button>
+  </mat-dialog-actions>
+
+</form>

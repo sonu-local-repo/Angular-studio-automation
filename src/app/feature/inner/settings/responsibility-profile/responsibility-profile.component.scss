@@ -1,0 +1,19 @@
+.profile{
+  background-color: #F8F9F9;
+  border: 2px red ;
+}
+.profile-snap-list{
+  display: flex;
+  list-style: none;
+}
+.inline-list{
+  text-decoration: none;
+  margin-right: 25px;
+}
+.title, .text{
+  display: inline;
+  margin-right: 10px;
+}
+.title{
+  color: #828282;
+}

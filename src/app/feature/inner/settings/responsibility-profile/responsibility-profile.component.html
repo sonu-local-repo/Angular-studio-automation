@@ -1,0 +1,27 @@
+<app-page-scroll-layout>
+  <div *ngIf="resp">
+    <div class="profile">
+      <ul class="profile-snap-list">
+        <li class="inline-list">
+          <div class="title mat-body-strong">ID:</div>
+          <div class="text mat-body-strong">{{resp?.id}}</div>
+        </li>
+        <li class="inline-list">
+          <div class="title mat-body-strong">Name:</div>
+          <div class="text mat-body-strong">{{resp?.name}}</div>
+        </li>
+        <li class="inline-list">
+          <div class="title mat-body-strong">Status:</div>
+          <div class="text mat-body-strong">{{resp?.status}}</div>
+        </li>
+      </ul>
+    </div>
+    <mat-tab-group>
+
+      <mat-tab label="View Details">
+        <app-responsibility-view [responsibility]="resp"></app-responsibility-view>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</app-page-scroll-layout>
