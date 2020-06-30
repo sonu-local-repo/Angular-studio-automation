@@ -15,8 +15,6 @@ export class PermissionService {
 
   getUserScreenPermissions(screenId: string) {
     const userScreens = this.authService.getLoggedInUser().viewsList;
-    console.log(userScreens);
-    console.log(screenId);
     const currentScreen = userScreens.find((view) => {
       return view.viewName.toLowerCase() === (screenId ? screenId.toLowerCase() : '');
     });

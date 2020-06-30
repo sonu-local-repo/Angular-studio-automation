@@ -19,6 +19,7 @@ import { OrderWorkflowComponent } from './order-workflow/order-workflow.componen
 import { OrderSummaryPdfComponent } from './order-summary-pdf/order-summary-pdf.component';
 import { OrderAttachmentComponent } from './order-attachment/order-attachment.component';
 import { NavigationGuard } from '@core/services/navigation-guard.service';
+import { NewOrderStepperComponent } from './new-order-stepper/new-order-stepper.component';
 @NgModule({
   declarations: [
     OrderListComponent,
@@ -33,7 +34,8 @@ import { NavigationGuard } from '@core/services/navigation-guard.service';
     OrderTasksComponent,
     OrderWorkflowComponent,
     OrderSummaryPdfComponent,
-    OrderAttachmentComponent
+    OrderAttachmentComponent,
+    NewOrderStepperComponent
   ],
   imports: [
     CommonModule,

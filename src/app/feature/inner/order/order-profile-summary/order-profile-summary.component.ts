@@ -10,7 +10,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { switchMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { OrderAttachment } from '../models/order-attachment';
-import html2canvas from 'html2canvas';
+import html2canvas, {Options} from 'html2canvas';
 
 import * as jspdf from 'jspdf';
 import { formatDate } from '@angular/common';
@@ -84,7 +84,11 @@ export class OrderProfileSummaryComponent implements OnInit {
 
   savePDF(uploadAttachment: boolean) {
     const data = document.getElementById('pdftoExport');
-    html2canvas(data)
+      const opts: Partial<Options> = {
+          logging: false,
+          scale: 2
+      };
+    html2canvas(data, opts)
       .then((canvas) => {
         const dt = formatDate(new Date(), 'Mdyyhmmss', 'en');
         const imgData = canvas.toDataURL('image/jpeg');

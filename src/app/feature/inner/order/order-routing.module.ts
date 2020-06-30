@@ -7,6 +7,8 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderProfileComponent } from './order-profile/order-profile.component';
 import {OrderTasksComponent} from "./order-tasks/order-tasks.component";
 import { NavigationGuard } from '@core/services/navigation-guard.service';
+import {OrderWorkflowComponent} from "./order-workflow/order-workflow.component";
+import {NewOrderStepperComponent} from "./new-order-stepper/new-order-stepper.component";
 @NgModule({
     imports: [
         RouterModule.forChild([
@@ -21,7 +23,8 @@ import { NavigationGuard } from '@core/services/navigation-guard.service';
             },
             {
                 path: 'new',
-                component: OrderAddEditComponent,
+                // component: OrderAddEditComponent,
+              component: NewOrderStepperComponent,
                 canDeactivate: [CanDeactivateGuardService],
                 data: {
                     breadcrumb: 'New',

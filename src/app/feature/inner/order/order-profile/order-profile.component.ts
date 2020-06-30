@@ -6,7 +6,7 @@ import { Order } from '../models/order';
 import { OrderService } from '../order.service';
 import { SubjectService } from '../subject-service';
 import { MatTabGroup } from '@angular/material/tabs';
-import html2canvas from 'html2canvas';
+import html2canvas, {Options} from 'html2canvas';
 
 import * as jspdf from 'jspdf';
 import { OrderAttachment } from '../models/order-attachment';
@@ -86,11 +86,15 @@ export class OrderProfileComponent implements OnInit {
   }
 
   savePDF() {
+    const opts: Partial<Options> = {
+      logging: false,
+      scale: 2
+    };
     const data = document.getElementById('pdftoExport');
     html2canvas(data)
       .then((canvas) => {
         const dt = formatDate(new Date(), 'Mdyyhmmss', 'en');
-        const imgData = canvas.toDataURL('image/jpeg');
+        const imgData = canvas.toDataURL('image/png');
         const pdfDoc = new jspdf({
           orientation: 'potrait',
         });

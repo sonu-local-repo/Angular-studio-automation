@@ -120,6 +120,13 @@ export class SidenavListComponent implements OnInit {
             isVisible: this.permissionService.canViewOf(ScreenName.Settings_Responsibility) ,
             badge: 0
           },
+          {
+            name: 'Services ',
+            icon: 'settings',
+            url: 'settings/services',
+            isVisible: of(true) ,
+            badge: 0
+          },
           ]
       },
     ];

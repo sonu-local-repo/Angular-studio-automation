@@ -12,11 +12,12 @@ import { ResponsibilityProfileComponent } from './responsibility-profile/respons
 import { ResponsibilityViewComponent } from './responsibility-view/responsibility-view.component';
 import { ViewsComponent } from './views-list/views.component';
 import { ViewAddComponent } from './view-add/view-add.component';
+import { ServiceListComponent } from './service-list/service-list.component';
 
 @NgModule({
   declarations: [SettingsListComponent,
     ServicesComponent, ServiceDetailsComponent, ServicesDialogComponent,
-    CreateLovModelComponent, ResponsibilitiesComponent, ResponsibilityProfileComponent, ResponsibilityViewComponent, ViewsComponent, ViewAddComponent],
+    CreateLovModelComponent, ResponsibilitiesComponent, ResponsibilityProfileComponent, ResponsibilityViewComponent, ViewsComponent, ViewAddComponent, ServiceListComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,

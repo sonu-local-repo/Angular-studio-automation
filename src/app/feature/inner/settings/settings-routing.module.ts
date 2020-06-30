@@ -6,6 +6,7 @@ import {CustomerProfileComponent} from "../customer/customer-profile/customer-pr
 import {ScreenName} from "@shared/enums/screen-name.enum";
 import {ResponsibilityProfileComponent} from "./responsibility-profile/responsibility-profile.component";
 import {WebAccess} from "@shared/enums/web-access.enum";
+import {ServiceListComponent} from "./service-list/service-list.component";
 
 @NgModule({
     imports: [
@@ -40,6 +41,15 @@ import {WebAccess} from "@shared/enums/web-access.enum";
             data: {
               breadcrumb: ':id',
               screenId: ScreenName.Responsibility_Profile,
+              // permissionsRequired: [WebAccess.View]
+            }
+          },
+          {
+            path: 'services',
+            component: ServiceListComponent,
+            data: {
+              breadcrumb: ':id',
+              // screenId: ScreenName.Responsibility_Profile,
               // permissionsRequired: [WebAccess.View]
             }
           }

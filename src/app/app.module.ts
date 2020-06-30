@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FakeBackendProvider } from './fake-backend/fake-backend.interceptor';
 import { ComponentsModule } from '@shared/components/components.module';
+
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'green',
   bgsPosition: POSITION.bottomCenter,
@@ -33,6 +35,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LayoutModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatDialogModule,
     // NgxUiLoaderHttpModule.forRoot({ excludeRegexp: ['*order-task*'] }),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     CoreModule,
@@ -41,7 +44,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
     FakeBackendProvider,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
