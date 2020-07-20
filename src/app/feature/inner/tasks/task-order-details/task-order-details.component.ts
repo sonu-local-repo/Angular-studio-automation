@@ -7,7 +7,7 @@ import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { TaskService } from "../task.service";
-import { OrderAttachment } from "../../order/models/order-attachment";
+import { Attachment } from "../../order/models/order-attachment";
 
 @Component({
   selector: 'app-task-order-details',
@@ -19,8 +19,13 @@ export class TaskOrderDetailsComponent implements OnInit {
   orderDetails: Order;
   subOrderList: Order[];
   pagesGroupedByType: any = [];
-  constructor(private errorService: ErrorService, private orderService: OrderService, private activatedRoute: ActivatedRoute,
-    private taskService: TaskService, private http: HttpClient) { }
+  constructor(
+    private errorService: ErrorService,
+    private orderService: OrderService,
+    private activatedRoute: ActivatedRoute,
+    private taskService: TaskService,
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
 
@@ -44,15 +49,15 @@ export class TaskOrderDetailsComponent implements OnInit {
   }
 
   exportAsPDF() {
-    let data = document.getElementById('MyDIv');
+    const data = document.getElementById('MyDIv');
     html2canvas(data).then(canvas => {
       const contentDataURL = canvas.toDataURL('image/jpeg');
-      let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+      const pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
       // let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
       // pdf.addImage(contentDataURL, 'JPEG', 0, 1, 29.7, 21.0);
       pdf.addImage(contentDataURL, 'JPEG', 0, 0, 29.7, 21.0);
-      const orderAttachment: OrderAttachment = {
-        fileName: (this.orderId + Math.random()).toString() + ".pdf",
+      const orderAttachment: Attachment = {
+        fileName: (this.orderId + Math.random()).toString() + '.pdf',
         fileContent: btoa(pdf.output())
       };
       this.taskService.uploadFile(this.orderId, orderAttachment).subscribe((data) => console.log(data));

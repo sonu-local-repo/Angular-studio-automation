@@ -1,0 +1,154 @@
+<div class="matero-page-header">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between end" style="margin-bottom: -10px;">
+    <div fxLayout="column" fxFlex>
+      <!-- <div fxLayout="row">
+        <h1 class="matero-page-title">Opportunity</h1>
+      </div> -->
+      <div fxLayout="row" style="padding-left: 18px; padding-bottom: 1.34375em;">
+        <app-breadcrumb></app-breadcrumb>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex="40">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between">
+        <div fxLayout="column" fxFlex="60">
+          <div *ngIf="searchForm" [formGroup]="searchForm">
+            <mat-form-field
+              appearance="outline"
+              style="padding-top: 3px; width: 100%; font-size: 12px;"
+            >
+              <mat-label>Search Account</mat-label>
+              <input
+                #searchText
+                matInput
+                formControlName="searchString"
+                (keyup)="onKeyUp(searchText.value)"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex>
+          <div style="margin-top: 10px;">
+            <button
+              mat-raised-button
+              class="button-create-page"
+              (click)="createNewOpty_OnClick()"
+            >
+              New Opportunity
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+
+<div style="padding-top: 20px;">
+  <div fxLayout="column" fxFlex="10">
+    <mat-list>
+      <mat-list-item style="padding-left: 0px!important">
+        All Opportunities
+      </mat-list-item>
+      <mat-list-item> Open Opportunities </mat-list-item>
+      <mat-list-item> Closed Opportunities </mat-list-item>
+      <mat-list-item>
+        <!-- <form formGroup>
+        <mat-form-field>
+          <mat-label>Assignee</mat-label>
+          <input type="text" matInput>
+        </mat-form-field>
+      </form> -->
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div fxLayout="column" fxFlex fxFlexOffset="10px">
+    <div fxLayout="row">
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="showSpinner"
+      ></mat-progress-bar>
+      <div class="mat-elevation-z0" fxFlex style="border: 1px solid #e5e5e5;">
+        <table
+          mat-table
+          [dataSource]="optys"
+          matSort
+          matSortActive="id"
+          matSortDisableClear
+          matSortDirection="desc" style="width: 100%;"
+        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element"><div style="cursor: pointer;" routerLink="/opportunity/{{element.id}}">{{ element.id }}</div></td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>NAME</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>STATUS</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="source">
+            <th mat-header-cell *matHeaderCellDef>SOURCE</th>
+            <td mat-cell *matCellDef="let element">{{ element.source }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="dueDate">
+            <th mat-header-cell *matHeaderCellDef>DUE DATE</th>
+            <td mat-cell *matCellDef="let element">{{ element.dueDate | date}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef>PRIORITY</th>
+            <td mat-cell *matCellDef="let element">{{ element.priority }}</td>
+          </ng-container>
+          <ng-container matColumnDef="accounts_name">
+            <th mat-header-cell *matHeaderCellDef>CUSTOMER</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.accounts[0]?.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="gotoOptyDetailsView(element.id)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>View</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>assignment_ind</mat-icon>
+                  <span>Assign To</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button mat-menu-item disabled>
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+            [length]="resultsLength"
+            [pageSize]="itemPerPage"
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+          ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

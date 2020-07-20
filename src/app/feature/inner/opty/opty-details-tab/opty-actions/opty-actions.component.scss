@@ -1,0 +1,27 @@
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 200px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 0px !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 0px !important;
+  }
+
+textarea {
+    resize: none;
+}
+
+.form-field-notes .mat-form-field-wrapper{
+    padding-bottom: 5px;
+}
+
+.form-field .mat-form-field-infix{
+  padding: 13px 0px!important;
+  border-top: 0px;
+}
+
+.form-field .mat-form-field-wrapper{
+  padding-bottom: 5px;
+}

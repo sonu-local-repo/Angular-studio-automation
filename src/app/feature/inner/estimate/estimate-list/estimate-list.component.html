@@ -1,0 +1,88 @@
+<div class="router-container" style="height: 100%;">
+  <mat-card class="mat-elevation-z0">
+    <!-- <mat-card-subtitle>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between end">
+        <div fxLayout="column">
+          <div>
+           <button
+                mat-stroked-button
+                (click)="createQuoteLine()"
+                class="button-create-page"
+              >
+                <mat-icon>add</mat-icon>Create Quote Item
+              </button>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <div>
+              <button
+                  mat-stroked-button
+                  [disabled]="selectedIsEmpty"
+                  (click)="estimate_onClick()"
+                  class="button-create-page"
+                >
+                  <mat-icon>attach_money</mat-icon>Estimate
+                </button>
+            </div>
+            <div style="margin-left: 10px;">
+              <button
+                mat-stroked-button
+                [disabled]="selectedIsEmpty"
+                class="button-create-page"
+              >
+                <mat-icon>schedule</mat-icon> Schedule
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-subtitle> -->
+    <div>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        style="width: 100%;"
+        cell-padding="20px"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element?.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="createdDate">
+          <th mat-header-cell *matHeaderCellDef>CREATED DATE</th>
+          <td mat-cell *matCellDef="let element">{{ element?.createdAt | date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="createdBy">
+          <th mat-header-cell *matHeaderCellDef>CREATED BY</th>
+          <td mat-cell *matCellDef="let element">{{ element?.createdBy }}</td>
+        </ng-container>
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef>ESTIMATED AMOUNT</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.totalAmount | currency }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>STATUS</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.status }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon class="material-icons-outlined" (click)="approveEstimate(element.id)" style="cursor: pointer;">thumb_up_alt</mat-icon>
+            <mat-icon
+              class="material-icons-outlined"
+              style="padding-left: 20px; cursor: pointer;"
+              >thumb_down_alt</mat-icon
+            >
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-card>
+</div>

@@ -1,5 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
-  <!-- Side Nav-->
+<!-- <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #sidenav
     class="sidenav"
@@ -12,9 +11,7 @@
     >
     <app-sidenav-list></app-sidenav-list>
   </mat-sidenav>
-  <!-- / Side Nav-->
   <mat-sidenav-content>
-    <!-- Toolbar-->
     <button
         mat-icon-button fxHide
         fxShow.lt-md
@@ -23,19 +20,53 @@
       >
         <mat-icon>menu</mat-icon>
       </button>
-    <!-- <app-toolbar></app-toolbar> -->
+   
     <mat-toolbar color="primary">
       <mat-toolbar-row class="breadcrumb-row">
         <app-breadcrumb></app-breadcrumb>
 
       </mat-toolbar-row>
     </mat-toolbar>
-    <!-- / Toolbar-->
+ 
     <router-outlet *ngIf="!somethingWentWrong"></router-outlet>
     
     <app-something-went-wrong
       *ngIf="somethingWentWrong"
     ></app-something-went-wrong>
   </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-toolbar class="mat-toolbar">
+  <mat-toolbar-row>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+      <div fxLayout="column" fxFlex="10">
+        <span style="color: white;">{{ brandName }}</span>
+      </div>
+      <div fxLayout="column" fxFlex="80">
+        <app-sidenav-list></app-sidenav-list>
+      </div>
+      <div fxLayout="column" >
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item>Signed in as {{ userName }}</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item  (click)="logout()"> <mat-icon style="padding-right: 10px;">power_settings_new</mat-icon>Logout</button>
+        </mat-menu>
+        
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>account_box</mat-icon>
+        </button>
+      
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-something-went-wrong
+      *ngIf="somethingWentWrong"
+    ></app-something-went-wrong>
+  </mat-sidenav-content>
 </mat-sidenav-container>
+
 

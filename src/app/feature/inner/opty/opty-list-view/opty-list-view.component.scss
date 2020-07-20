@@ -1,0 +1,40 @@
+.mat-column-actions {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10px !important;
+    overflow-wrap: break-word;
+  }
+
+
+  /* Styles for mat-table Start*/
+.mat-column-select {
+  overflow: visible; /* Style for displaying checkbox center inside a cell */
+}
+
+/*This fix is available in later versions of angular
+* https://github.com/angular/material2/pull/10619
+*/
+::ng-deep .mat-sort-header-container {
+  align-items: center; /* Style for displaying items center inside a cell after sorting */
+}
+
+/*.mat-table {
+  overflow: auto;
+  max-height: 500px;*/ /* Style for restricting maximum height of table - TODO - Need to set the width and height as per application requirements */
+/*}*/
+
+.highlight {
+  background: #87cefa; /* grey */
+}
+/* Styles for mat-table end*/
+
+/*Style to keep the label & icon centered in a div - start */
+.column-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+th.mat-header-cell {
+  text-align: left;
+}

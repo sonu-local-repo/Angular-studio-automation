@@ -9,7 +9,7 @@ import { MatTabGroup } from '@angular/material/tabs';
 import html2canvas, {Options} from 'html2canvas';
 
 import * as jspdf from 'jspdf';
-import { OrderAttachment } from '../models/order-attachment';
+import { Attachment } from '../models/order-attachment';
 import { TaskService } from '../../tasks/task.service';
 import { formatDate } from '@angular/common';
 import {PermissionService} from "@core/services/permission.service";
@@ -104,7 +104,7 @@ export class OrderProfileComponent implements OnInit {
         pdfDoc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
         // tslint:disable-next-line:no-unused-expression
         pdfDoc.save(this.orderId + dt + '.pdf');
-        const orderAttachment: OrderAttachment = {
+        const orderAttachment: Attachment = {
           fileName: this.orderId + dt + '.pdf',
           fileContent: btoa(pdfDoc.output())
         };

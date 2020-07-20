@@ -1,0 +1,43 @@
+.estimate-container {
+  display: block;
+  padding: 20px;
+}
+
+.subtotal {
+  // padding-top: 30px;
+  text-align: right;
+  padding-right: 20px;
+  width: 200px;
+}
+.calc {
+  background-color: white !important;
+  border-bottom: solid 1px black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100px;
+}
+
+.calc-items {
+  padding-top: 15px;
+}
+.calc-items-label {
+  width: 50px;
+}
+
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+}
+
+@page {
+  size: A4;
+}

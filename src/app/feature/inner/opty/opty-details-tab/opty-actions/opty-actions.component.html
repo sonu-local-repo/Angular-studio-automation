@@ -1,0 +1,123 @@
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Log Activity">
+    <ng-template mat-tab-label>
+      <mat-icon class="material-icons-outlined">add</mat-icon>
+      Log Activity
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Create Task">
+    <ng-template mat-tab-label>
+      <mat-icon class="material-icons-outlined">checkbox</mat-icon>
+      Task
+    </ng-template>
+    <div fxLayout="column" style="padding: 20px 0px;">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex="32">
+          <mat-label>Subject</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex>
+          <mat-label>Description</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex>
+          <mat-label>Due Date</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input
+              matInput
+              [matDatepicker]="endDatePicker"
+              formControlName="dueDate"
+              required
+            />
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex>
+          <mat-label>Assigned To</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex>
+          <mat-label>Status</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="end center"
+        fxLayoutGap="20px"
+      >
+        <div fxLayout="column">
+          <button mat-button class="button-all">Save</button>
+        </div>
+        <div fxLayout="column">
+          <button mat-button class="button-all">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Notes">
+    <ng-template mat-tab-label>
+      <mat-icon class="material-icons-outlined">sticky_note_2</mat-icon>
+      Notes
+    </ng-template>
+    <!-- <ckeditor
+      [editor]="Editor"
+      [config]="{
+        toolbarLocation: 'bottom',
+        toolbar: ['bold', 'italic', 'Underline']
+      }"
+      data="<p>Hello, world!</p>"
+    ></ckeditor
+  >-->
+    <div fxLayout="row">
+      <mat-form-field
+        appearance="outline"
+        class="form-field-notes form-field"
+        style="width: 100%; border-radius: 0px !important; padding-top: 10px;"
+      >
+        <textarea
+          matInput
+          placeholder="You can enter notes here"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="7"
+          cdkAutosizeMaxRows="7"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      fxLayoutGap="20px"
+    >
+      <div fxLayout="column">
+        <button mat-button class="button-all">Save</button>
+      </div>
+      <div fxLayout="column">
+        <button mat-button class="button-all">Cancel</button>
+      </div>
+    </div>
+  </mat-tab>
+  
+  
+  <mat-tab label="Schedule">
+    <ng-template mat-tab-label>
+      <mat-icon class="material-icons-outlined">event</mat-icon>
+      Event
+    </ng-template></mat-tab
+  >
+</mat-tab-group>

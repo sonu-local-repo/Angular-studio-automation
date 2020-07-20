@@ -1,0 +1,17 @@
+.calender-view{
+    display:block;
+}
+
+.flex-container { display: flex; z-index: 100;}
+
+.mat-sidenav-content{
+    overflow: auto!important;
+}
+.cal-month-view .cal-cell-top {
+    min-height: 8px!important;
+    flex: 1;
+}
+
+.cal-month-view .cal-day-cell {
+    min-height: 140px!important;
+}

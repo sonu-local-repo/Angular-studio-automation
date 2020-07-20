@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TaskAPI } from '@shared/api-end-points/task-api-endpoint';
 import { TaskDeptModel } from './model/task-dept.model';
 import { TaskUpdateModel } from './model/task-update.model';
-import { OrderAttachment } from '../order/models/order-attachment';
+import { Attachment } from '../order/models/order-attachment';
 import { Task } from './model/task';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class TaskService {
   completeTask(taskDetails: TaskUpdateModel): Observable<Task> {
     return this.http.put<Task>(TaskAPI.completeTaskUrl(taskDetails.id), taskDetails);
   }
-  uploadFile(id: number, attachment: OrderAttachment): Observable<any> {
+  uploadFile(id: number, attachment: Attachment): Observable<any> {
     return this.http.post<any>(TaskAPI.uploadFile(id), attachment);
   }
 }

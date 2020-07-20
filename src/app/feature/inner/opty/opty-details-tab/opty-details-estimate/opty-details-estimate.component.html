@@ -1,0 +1,15 @@
+<div style="background-color: white;">
+  <!-- <div fxLayout="row" fxLayoutAlign="space-between end">
+    <div fxLayout="column">
+      <button mat-stroked-button>Print</button>
+    </div>
+    <div fxLayout="column">
+      <button mat-stroked-button>E-mail</button>
+    </div>
+  </div> -->
+  <div style="height:50vh">
+    <div *ngIf="estimate" style="height: 100%; overflow-y: auto;">
+      <app-estimate-list [estimate]="estimate"></app-estimate-list>
+    </div>
+  </div>
+</div>

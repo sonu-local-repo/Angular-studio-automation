@@ -20,6 +20,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FakeBackendProvider } from 'app/fake-backend/fake-backend.interceptor';
 import { ChooseItemModalComponent } from './choose-item-modal/choose-item-modal.component';
+import { ComposeEmailComponent } from './compose-email/compose-email.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ChooseItemModalComponent } from './choose-item-modal/choose-item-modal.
     ToolbarComponent,
     PasswordResetComponent,
     PasswordResetRedirectComponent,
-    ChooseItemModalComponent
+    ChooseItemModalComponent,
+    ComposeEmailComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +48,7 @@ import { ChooseItemModalComponent } from './choose-item-modal/choose-item-modal.
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    CKEditorModule
   ],
   exports: [
     SidenavListComponent,

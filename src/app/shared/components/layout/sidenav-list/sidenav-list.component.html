@@ -1,9 +1,9 @@
-<mat-nav-list fxLayout="column" fxLayoutAlign="space-between stretch" style="padding-top: 20px;">
+<!-- <mat-nav-list fxLayout="column" fxLayoutAlign="space-between stretch" style="padding-top: 20px;">
   <perfect-scrollbar>
     <mat-nav-list>
       <span *ngFor="let menu of sideMenuList">
         <span *ngIf="menu.isVisible | async">
-          <!-- CHILD MENU -->
+         
           <span
             *ngIf="menu.subItems && menu.subItems.length > 0; else menuItem"
           >
@@ -43,7 +43,6 @@
                     [ngClass]="{ 'active-menu': isModuleSelected(subItem) }"
                   >
                     <div fxLayout="row" fxLayoutAlign="space-between center">
-                      <!-- <mat-icon>{{ subItem.icon }}</mat-icon> -->
                       <div style="font-size: 14px;">
                         <span *ngIf="subItem.badge != 0; else noNotification">
                           <span
@@ -65,7 +64,6 @@
             </mat-accordion>
           </span>
 
-          <!-- MAIN MENU -->
           <ng-template #menuItem>
             <mat-list-item
               routerLink="/{{ menu.url }}"
@@ -100,4 +98,46 @@
       >power_settings_new</mat-icon
     >
   </div>
-</mat-nav-list>
+</mat-nav-list> -->
+
+
+
+
+<div fxLayout="row" >
+  <ng-container *ngFor="let menu of sideMenuList">
+    <div *ngIf="!menu.subItems; else child">
+      <div *ngIf="menu.isVisible | async">
+        <div [ngClass]="{ 'active-menu': isModuleSelected(menu) }" style="margin-right: 10px; margin-left: 10px;">
+          <a
+            mat-button
+            routerLink="/{{ menu.url }}"
+            *ngIf="!menu.subItems"
+            class="menuItem"
+          >
+            {{ menu.name }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <ng-template #child>
+      <div>
+        <button
+          mat-button
+          *ngIf="menu.subItems"
+          [matMenuTriggerFor]="menulevel1" style="color: white;"
+        >
+          {{ menu.name }}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menulevel1="matMenu">
+          <ng-container *ngFor="let subItem of menu.subItems">
+            <a mat-menu-item routerLink="/{{ subItem.url }}">{{
+              subItem.name
+            }}</a>
+          </ng-container>
+        </mat-menu>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
+

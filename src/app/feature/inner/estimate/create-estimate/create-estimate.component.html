@@ -1,0 +1,517 @@
+<div fxLayout="row" fxLayoutAlign="space-between end">
+  <div fxLayout="column">
+    <button mat-stroked-button class="button-all" (click)="savePDF()">
+      Save
+    </button>
+  </div>
+  <div fxLayout="column">
+    <button mat-stroked-button class="button-all" (click)="sendEmail()">
+      E-mail
+    </button>
+  </div>
+</div>
+<div>
+  <div
+    fxLayoutAlign="space-around none"
+    style="height: 80vh; overflow-y: scroll;"
+  >
+    <div
+      class="mat-elevation-z3"
+      style="
+        width: 100%;
+        padding: 40px;
+        border: 1px solid #f5f5f5;
+        height: fit-content;
+        margin: 20px 20px 20px 0px;
+      "
+    >
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="space-around end">
+          <div fxLayout="column" fxFlex>
+            <img
+              src="../../../../assets/images/OLD_BAY_REMODELING.png"
+              style="width: 100px;"
+            />
+          </div>
+          <div fxLayout="column" fxFlex="30"></div>
+          <div fxLayout="column" fxFlex style="border: 1px solid;">
+            <div style="padding-top: 5px;">ESTIMATE NUMBER: #619<br /></div>
+            <div style="padding-top: 5px;">
+              ESTIMATE DATE: May 15, 2020<br />
+            </div>
+            <div style="padding-top: 5px;">
+              SCHEDULED DATE: Thu May 14, 2020 12:00<br />
+            </div>
+
+            <mat-divider></mat-divider>
+            <h4>
+              TOTAL <strong>${{ totalEstimateAmount }}</strong>
+            </h4>
+          </div>
+        </div>
+        <div
+          fxLayout="row"
+          style="padding-top: 20px;"
+          fxLayoutAlign="space-around end"
+        >
+          <div fxLayout="column" style="float: left;" fxFlex>
+            <h3>Old Bay Remodeling</h3>
+            <div>
+              <strong>{{ accountName }}</strong
+              ><br />
+              6010 Chris Way<br />
+              Elkridge, MD 21075<br />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="30"></div>
+          <div fxLayout="column" fxFlex style="justify-content: right;">
+            <strong>CONTACT US</strong><br />
+            6717 Lowes Ln<br />
+            Elkridge, MD 21075
+          </div>
+        </div>
+        <div
+          fxLayout="row"
+          style="padding-top: 20px;"
+          fxLayoutAlign="space-around end"
+        >
+          <div fxLayout="column" style="float: left;" fxFlex>
+            <div>
+              <mat-icon style="font-size: 20px;">phone</mat-icon>(443)
+              838-9361<br />
+              <mat-icon style="font-size: 20px;">local_post_office</mat-icon
+              >sammy.m.ibrahim@gmail.com
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="30"></div>
+          <div fxLayout="column" fxFlex style="justify-content: right;">
+            <div>
+              <mat-icon style="font-size: 20px;">phone</mat-icon>(240)
+              581-2680<br />
+              <mat-icon style="font-size: 20px;">local_post_office</mat-icon
+              >info@oldbayhandyman.com
+            </div>
+          </div>
+        </div>
+        <table
+          style="
+            padding-top: 20px;
+            border-spacing: 0px;
+            border-collapse: unset;
+          "
+        >
+          <tr style="background-color: rgb(182, 182, 182);">
+            <td style="width: 52%;">SERVICES</td>
+            <td style="width: 12%;">QUANTITY</td>
+            <td style="width: 15%;">UNIT PRICE</td>
+            <td style="width: 15%;">AMOUNT</td>
+          </tr>
+        </table>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center"
+          fxFlex="80"
+          style="padding-top: 10px;"
+        >
+          <form [formGroup]="formGroup" style="width: 100%;">
+            <div formGroupName="estimateLineItems">
+              <div
+                *ngFor="let item of getEstimateLineItems().controls; index as i"
+                [formGroupName]="i"
+              >
+                <div
+                  fxLayout="row"
+                  fxLayoutAlign="space-between"
+                  fxLayoutGap="5px"
+                >
+                  <div fxLayout="column" fxFlex="80">
+                    <div fxLayout="row" fxFlex fxLayoutGap="10px">
+                      <div fxLayout="column" fxFlex>
+                        <mat-form-field required appearance="fill">
+                          <mat-label>Item</mat-label>
+                          <input matInput formControlName="item" />
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="column" fxFlex="15">
+                        <mat-form-field required appearance="fill">
+                          <mat-label>Qty</mat-label>
+                          <input
+                            matInput
+                            formControlName="qty"
+                            (keyup)="calculateLineItem($event, i)"
+                          />
+                        </mat-form-field>
+                      </div>
+
+                      <div fxLayout="column" fxFlex="15">
+                        <mat-form-field required appearance="fill">
+                          <mat-label>Rate</mat-label>
+                          <input
+                            matInput
+                            formControlName="rate"
+                            (keyup)="calculateLineItem($event, i)"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <!-- <div fxLayout="column" fxFlex>
+                    <mat-form-field required appearance="fill">
+                      <mat-label>Type</mat-label>
+                      <input matInput formControlName="type" />
+                    </mat-form-field>
+                  </div> -->
+                    </div>
+                    <div fxLayout="row">
+                      <div fxLayout="column" fxFlex>
+                        <mat-form-field required appearance="fill">
+                          <mat-label>Description</mat-label>
+                          <textarea
+                            matInput
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="50"
+                            formControlName="description"
+                          ></textarea>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxFlex="10">
+                    <mat-form-field required appearance="fill">
+                      <mat-label>Total</mat-label>
+                      <input matInput formControlName="total" tabindex="-1" />
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="column" fxFlex="2">
+                    <mat-icon
+                      (click)="removeEstimateLineItems(i)"
+                      style="cursor: pointer;"
+                      >delete</mat-icon
+                    >
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button mat-button primary (click)="addNewLineItem()">
+                  Add New Item
+                </button>
+              </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="end end">
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Sub Total
+                </div>
+                <span matPrefix>$</span>
+                <div fxLayout="column">
+                  <input matInput formControlName="subTotal" class="calc" />
+                </div>
+              </div>
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Discount
+                </div>
+                <div fxLayout="column">
+                  <input
+                    matInput
+                    formControlName="discount"
+                    class="calc"
+                    (keyup)="calculateTotal($event)"
+                  />
+                </div>
+              </div>
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Sub Total Less Discount
+                </div>
+                <span matPrefix>$</span>
+
+                <div fxLayout="column">
+                  <input
+                    matInput
+                    formControlName="subDiscount"
+                    (keyup)="calculateTotal($event)"
+                    class="calc"
+                  />
+                </div>
+              </div>
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Tax Rate
+                </div>
+                <div fxLayout="column" fxFlex>
+                  <input
+                    matInput
+                    formControlName="taxRate"
+                    class="calc"
+                    (keyup)="calculateTotal($event)"
+                  />
+                </div>
+              </div>
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Total Tax
+                </div>
+                <span matPrefix>$</span>
+
+                <div fxLayout="column">
+                  <input
+                    matInput
+                    formControlName="totalTax"
+                    class="calc"
+                    (keyup)="calculateTotal($event)"
+                  />
+                </div>
+              </div>
+              <!-- <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">
+                  Shipping / Handling
+                </div>
+                <div fxLayout="column">
+                  <span matPrefix>$</span>
+                  <input matInput formControlName="shipping" class="calc"  (keyup)="calculateTotal($event)"/>
+                </div>
+              </div> -->
+              <div fxLayout="row" class="calc-items">
+                <div fxLayout="column" fxFlex="90" class="subtotal">TOTAL</div>
+                <span matPrefix>$</span>
+
+                <div fxLayout="column" fxFlex>
+                  <input matInput formControlName="total" class="calc" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div fxLayout="row" fxFlex>
+      <button mat-button primary (click)="addNewLineItem()">Add New Item</button>
+    </div> -->
+      </div>
+    </div>
+  </div>
+  <div style="opacity: 0; position: absolute;">
+    <div
+      fxLayoutAlign="space-around none"
+      id="estimate_pdf"
+      style="width: 210mm;"
+    >
+      <div style="width: 100%; padding: 40px;">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-around end">
+            <div fxLayout="column" fxFlex>
+              <img
+                src="../../../../assets/images/OLD_BAY_REMODELING.png"
+                style="width: 100px;"
+              />
+            </div>
+            <div fxLayout="column" fxFlex="30"></div>
+            <div fxLayout="column" fxFlex style="border: 1px solid;">
+              <div style="padding-top: 5px;">ESTIMATE NUMBER: #619<br /></div>
+              <div style="padding-top: 5px;">ESTIMATE DATE: <br /></div>
+              <div style="padding-top: 5px;">
+                SCHEDULED DATE: Thu May 14, 2020 12:00<br />
+              </div>
+
+              <mat-divider></mat-divider>
+              <h4>
+                TOTAL <strong>${{ totalEstimateAmount }}</strong>
+              </h4>
+            </div>
+          </div>
+          <div
+            fxLayout="row"
+            style="padding-top: 20px;"
+            fxLayoutAlign="space-around end"
+          >
+            <div fxLayout="column" style="float: left;" fxFlex>
+              <h3>Old Bay Remodeling</h3>
+              <div>
+                <strong>{{ accountName }}</strong
+                ><br />
+                6010 Chris Way<br />
+                Elkridge, MD 21075<br />
+              </div>
+            </div>
+            <div fxLayout="column" fxFlex="30"></div>
+            <div fxLayout="column" fxFlex style="justify-content: right;">
+              <strong>CONTACT US</strong><br />
+              6717 Lowes Ln<br />
+              Elkridge, MD 21075
+            </div>
+          </div>
+          <div
+            fxLayout="row"
+            style="padding-top: 20px;"
+            fxLayoutAlign="space-around end"
+          >
+            <div fxLayout="column" style="float: left;" fxFlex>
+              <div>
+                <mat-icon style="font-size: 20px;">phone</mat-icon>(443)
+                838-9361<br />
+                <mat-icon style="font-size: 20px;">local_post_office</mat-icon
+                >sammy.m.ibrahim@gmail.com
+              </div>
+            </div>
+            <div fxLayout="column" fxFlex="30"></div>
+            <div fxLayout="column" fxFlex style="justify-content: right;">
+              <div>
+                <mat-icon style="font-size: 20px;">phone</mat-icon>(240)
+                581-2680<br />
+                <mat-icon style="font-size: 20px;">local_post_office</mat-icon
+                >info@oldbayhandyman.com
+              </div>
+            </div>
+          </div>
+          <!-- <table
+          style="
+            padding-top: 20px;
+            border-spacing: 0px;
+            border-collapse: unset;
+          "
+        >
+          <tr style="background-color: rgb(182, 182, 182);">
+            <td style="width: 52%;">SERVICES</td>
+            <td style="width: 12%;">QUANTITY</td>
+            <td style="width: 15%;">UNIT PRICE</td>
+            <td style="width: 15%;">AMOUNT</td>
+          </tr>
+        </table> -->
+          <div
+            fxLayout="row"
+            fxLayoutGap="10px"
+            style="background-color: rgb(182, 182, 182);"
+          >
+            <div fxLayout="column" fxFlex="80">SERVICES</div>
+            <div fxLayout="column" fxFlex="10">QUANTITY</div>
+            <div fxLayout="column" fxFlex="10">UNIT PRICE</div>
+            <div fxLayout="column" fxFlex="10">AMOUNT</div>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center"
+            fxFlex="80"
+            style="padding-top: 10px;"
+          >
+            <form [formGroup]="formGroup" style="width: 100%;">
+              <div formGroupName="estimateLineItems">
+                <div
+                  fxLayout="column"
+                  style="width: 100% !important;"
+                  fxLayoutGap="20px"
+                >
+                  <div
+                    *ngFor="
+                      let item of getEstimateLineItems().controls;
+                      index as i
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div fxLayout="row" fxLayoutGap="10px">
+                      <div fxLayout="column" fxFlex="80">
+                        {{ item.get("item").value }}
+                      </div>
+                      <div fxLayout="column" fxFlex="10">
+                        {{ item.get("qty").value }}
+                      </div>
+                      <div fxLayout="column" fxFlex="10">
+                        {{ item.get("rate").value }}
+                      </div>
+                      <div fxLayout="column" fxFlex="10" readonly="true">
+                        {{ item.get("total").value }}
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                      <div
+                        fxLayout="column"
+                        fxFlex="65"
+                        style="word-break: break-word;"
+                      >
+                        {{ item.get("description").value }}
+                      </div>
+                      <div fxLayout="column"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="end end">
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Sub Total
+                  </div>
+                  <span matPrefix>$</span>
+                  <div fxLayout="column">
+                    <input matInput formControlName="subTotal" class="calc" />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Discount
+                  </div>
+                  <div fxLayout="column">
+                    <input matInput formControlName="discount" class="calc" />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Sub Total Less Discount
+                  </div>
+                  <span matPrefix>$</span>
+                  <div fxLayout="column">
+                    <input
+                      matInput
+                      formControlName="subDiscount"
+                      (change)="calculateLineItem($event)"
+                      class="calc"
+                    />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Tax Rate
+                  </div>
+                   <span matPrefix>$</span>
+                  <div fxLayout="column" fxFlex>
+                   
+                    <input matInput formControlName="taxRate" class="calc" />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Total Tax
+                  </div>
+                  <div fxLayout="column">
+                    <span matPrefix>$ </span>
+                    <input matInput formControlName="totalTax" class="calc" />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    Shipping / Handling
+                  </div>
+                  <span matPrefix>$ </span>
+                  <div fxLayout="column">
+                   
+                    <input matInput formControlName="shipping" class="calc" />
+                  </div>
+                </div>
+                <div fxLayout="row" class="calc-items">
+                  <div fxLayout="column" fxFlex="90" class="subtotal">
+                    TOTAL
+                  </div>
+                  <span matPrefix>$Y</span>
+                  <div fxLayout="column" fxFlex>
+                   
+                    <input matInput formControlName="total" class="calc" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- <div fxLayout="row" fxFlex>
+      <button mat-button primary (click)="addNewLineItem()">Add New Item</button>
+    </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

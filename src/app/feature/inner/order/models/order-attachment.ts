@@ -1,4 +1,4 @@
-export class OrderAttachment {
+export class Attachment {
 
   fileName: string;
   fileContent: string;

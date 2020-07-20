@@ -22,7 +22,7 @@
 
 .active-menu,
 .active-menu:focus {
-  background:linear-gradient(90deg, #4fe2cd 3%, #235bad 3%) !important;
+  background:linear-gradient(0deg, #4fe2cd 3%, #ffffff00 3%) !important;
   // background: linear-gradient(90deg, #c137a2 3%, #313131 3%) !important;
   // background: linear-gradient(120deg,#5334ed, #808eff)
 }
@@ -94,4 +94,113 @@
 }
 .sub-menu-item{
   font-size: 14px;
+  color: white;
+}
+
+.mat-toolbar{
+  background: linear-gradient(10deg, #205cc2, #35addd)
+}
+
+// .sidenav-item__text {
+//   margin-left: 10px;
+//   font-size: 15px;
+// }
+// .sidenav-child-item{
+//   font-size: 10px;
+//   color: white;
+// }
+// .mat-nav-list {
+//   background-color: #2d323e !important;
+//   height: calc(100% - 64px);
+//   @media (max-width: 599px) {
+//     height: calc(100% - 56px);
+//   }
+// }
+
+// .mat-list-base {
+//   padding-top: 0;
+// }
+
+// .active-menu,
+// .active-menu:focus {
+//   background: linear-gradient(0deg, #fa7820 6%, #2f2f2f 3%) !important;
+   
+// }
+
+// .btn-sign-out {
+//   background-color: blueviolet;
+// }
+
+// ::ng-deep {
+//   .sidenav-item {
+//     .mat-list-item-content {
+//       color: aliceblue;
+//     }
+//   }
+// }
+
+// .user-profile {
+//   text-align: center;
+//   padding: 10px;
+//   height: 50px;
+//   background: #1e2129;
+//   color: white;
+//   font-size: 15px;
+//   font-weight: 500;
+// }
+
+// .user-profile__icon {
+//   padding: 3px;
+//   cursor: pointer;
+// }
+
+// .user-profile__icon:hover {
+//   background-color: dodgerblue;
+//   border-radius: 15px;
+// }
+
+// .user-profile__acronym {
+//   line-height: 50px;
+//   font-size: 25px;
+//   color: deeppink;
+//   border: solid;
+//   height: 50px;
+//   width: 50px;
+//   background-color: #ffffff;
+//   border-radius: 50%;
+//   display: inline-block;
+//   margin-bottom: 5px;
+// }
+// .expansion-panel {
+//   -webkit-box-shadow: none;
+//   -moz-box-shadow: none;
+//   box-shadow: none;
+//   background-color: #2d323e;
+// }
+// .mat-expansion-panel-header-custom{
+//   border-radius: 0px;
+//   font-size: 16px;
+//   padding: 0 10px;
+// }
+
+// ::ng-deep .mat-expansion-panel-header-custom > .mat-expansion-indicator:after {
+//   color: white;
+// }
+
+// .mat-panel-title-custom{
+//   padding-left: 7px; 
+//   color: #f0f8f9;
+// }
+// .sub-menu-item{
+//   font-size: 14px;
+// }
+
+.menuItem{
+    min-width: 8%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px !important;
+    color: white;
 }

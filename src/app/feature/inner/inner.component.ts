@@ -5,6 +5,7 @@ import { BRAND_NAME } from '@shared/configs/globals';
 import { ErrorService } from '@shared/services/error.service';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { SidenavListComponent } from '@shared/components/layout/sidenav-list/sidenav-list.component';
 @Component({
   selector: 'app-inner',
   templateUrl: './inner.component.html',

@@ -9,8 +9,8 @@ import { OrderWorkflowComponent } from '../order-workflow/order-workflow.compone
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { switchMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { OrderAttachment } from '../models/order-attachment';
-import html2canvas, {Options} from 'html2canvas';
+import { Attachment } from '../models/order-attachment';
+import html2canvas, { Options } from 'html2canvas';
 
 import * as jspdf from 'jspdf';
 import { formatDate } from '@angular/common';
@@ -84,10 +84,10 @@ export class OrderProfileSummaryComponent implements OnInit {
 
   savePDF(uploadAttachment: boolean) {
     const data = document.getElementById('pdftoExport');
-      const opts: Partial<Options> = {
-          logging: false,
-          scale: 2
-      };
+    const opts: Partial<Options> = {
+      logging: false,
+      scale: 2
+    };
     html2canvas(data, opts)
       .then((canvas) => {
         const dt = formatDate(new Date(), 'Mdyyhmmss', 'en');
@@ -101,7 +101,7 @@ export class OrderProfileSummaryComponent implements OnInit {
         pdfDoc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
         // tslint:disable-next-line:no-unused-expression
         pdfDoc.save(this.eOrderId + dt + '.pdf');
-        const orderAttachment: OrderAttachment = {
+        const orderAttachment: Attachment = {
           fileName: this.eOrderId + dt + '.pdf',
           fileContent: btoa(pdfDoc.output())
         };

@@ -62,6 +62,30 @@ export class SidenavListComponent implements OnInit {
         badge: 0
       },
       {
+        name: 'Accounts',
+        icon: 'transfer_within_a_station',
+        url: 'accounts',
+        isVisible: this.permissionService.canViewOf(ScreenName.Employee_List) ,
+        // isVisible: this.navigationService.canShowMenu('customers'),
+        badge: 0
+      },
+      {
+        name: 'Opportunity',
+        icon: 'transfer_within_a_station',
+        url: 'opportunity',
+        isVisible: this.permissionService.canViewOf(ScreenName.Employee_List) ,
+        // isVisible: this.navigationService.canShowMenu('customers'),
+        badge: 0
+      },
+      {
+        name: 'Scheduler',
+        icon: 'transfer_within_a_station',
+        url: 'scheduler',
+        isVisible: this.permissionService.canViewOf(ScreenName.Employee_List) ,
+        // isVisible: this.navigationService.canShowMenu('customers'),
+        badge: 0
+      },
+      {
         name: 'Employees',
         icon: 'group',
         url: 'employees',

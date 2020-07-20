@@ -1,0 +1,71 @@
+<div *ngIf="timeLine">
+  <div class="history-tl-container">
+    <ul class="tl">
+      <div *ngFor="let item of timeLine">
+        <li class="tl-item">
+          <div class="timestamp">
+            {{ item.createdAt | date: "medium" }}
+          </div>
+          <div class="item-title">
+            {{ item.employee.firstName }} {{ item.employee.lastName }}
+          </div>
+          <div class="item-detail">{{ item.description }}</div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+<!-- <div class="history-tl-container">
+  <ul class="tl">
+    <li class="tl-item">
+      <div class="timestamp">
+        3rd March 2015 7:00 PM
+      </div>
+      <div class="item-title">Start from Shire</div>
+      <div class="item-detail">Don't forget the ring</div>
+    </li>
+
+    <li class="tl-item">
+      <div class="timestamp">
+        3rd March 2015 7:00 PM
+      </div>
+      <div class="item-title">Start from Shire</div>
+      <div class="item-detail">Don't forget the ring</div>
+    </li>
+    <li class="tl-item">
+      <div class="timestamp">
+        19th March 2015 3:00 PM
+      </div>
+      <div class="item-title">Kill some Orcs</div>
+      <div class="item-detail">Don't enter the caves!!</div>
+    </li>
+    <li class="tl-item">
+      <div class="timestamp">
+        1st June 2015 7:00 PM
+      </div>
+      <div class="item-title">Throw that goddamn ring in the lava</div>
+      <div class="item-detail">Also, throw that Gollum too</div>
+    </li>
+    <li class="tl-item">
+      <div class="timestamp">
+        3rd March 2015 7:00 PM
+      </div>
+      <div class="item-title">Start from Shire</div>
+      <div class="item-detail">Don't forget the ring</div>
+    </li>
+    <li class="tl-item">
+      <div class="timestamp">
+        19th March 2015 3:00 PM
+      </div>
+      <div class="item-title">Kill some Orcs</div>
+      <div class="item-detail">Don't enter the caves!!</div>
+    </li>
+    <li class="tl-item">
+      <div class="timestamp">
+        1st June 2015 7:00 PM
+      </div>
+      <div class="item-title">Throw that goddamn ring in the lava</div>
+      <div class="item-detail">Also, throw that Gollum too</div>
+    </li>
+  </ul>
+</div> -->

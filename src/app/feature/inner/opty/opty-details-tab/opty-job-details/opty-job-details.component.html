@@ -1,0 +1,97 @@
+<div class="router-container">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-subtitle style="margin-bottom: 0px;">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between end">
+        <div fxLayout="column">
+          <div style="cursor: pointer;">
+            <mat-icon class="material-icons-outlined" (click)="backToJobs()"
+              >keyboard_backspace</mat-icon
+            >
+            <!-- <button
+                mat-stroked-button
+                (click)="createQuoteLine()"
+                class="button-create-page"
+              >
+                <mat-icon>add</mat-icon>Create Quote Item
+              </button> -->
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <div>
+              <!-- <button
+                  mat-stroked-button
+                  [disabled]="selectedIsEmpty"
+                  (click)="estimate_onClick()"
+                  class="button-create-page"
+                >
+                  <mat-icon>attach_money</mat-icon>Estimate
+                </button> -->
+            </div>
+            <div style="margin-left: 10px;">
+              <button
+                mat-stroked-button
+                (click)="openScheduler()"
+                class="button-all"
+              >
+                <mat-icon>schedule</mat-icon> Schedule
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-subtitle>
+  </mat-card>
+  <div>
+    <form [formGroup]="formGroup">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex>
+          <mat-label>Type</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput formControlName="type" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex>
+          <mat-label>Status</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput formControlName="status" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex>
+          <mat-label>Description</mat-label>
+          <mat-form-field appearance="outline" class="form-field">
+            <input matInput formControlName="description" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex>
+            <mat-label>Created By</mat-label>
+            <mat-form-field appearance="outline" class="form-field">
+              <input matInput formControlName="createdEmployee" readonly/>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex>
+            <mat-label>Created Date</mat-label>
+            <mat-form-field appearance="outline" class="form-field">
+              <input matInput formControlName="createdAt" readonly/>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex>
+            <mat-label>Last Updated Date</mat-label>
+            <mat-form-field appearance="outline" class="form-field">
+              <input matInput formControlName="updatedAt" readonly/>
+            </mat-form-field>
+          </div>
+      </div>
+    </form>
+  </div>
+  <mat-tab-group>
+      <mat-tab label="Expenses">
+
+      </mat-tab>
+      <mat-tab  label="Notes">
+          
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -53,6 +53,24 @@ import {AuthGuardService} from "@core/services/auth-guard.service";
                         data: { breadcrumb: 'Settings' },
                         // canActivate: [AuthGuardService],
                     },
+                    {
+                        path: 'accounts',
+                        loadChildren: './accounts/account.module#AccountModule',
+                        data: { breadcrumb: 'Accounts' },
+                        // canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'opportunity',
+                        loadChildren: './opty/opty.module#OptyModule',
+                        data: { breadcrumb: 'Opportunity' },
+                        // canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'scheduler',
+                        loadChildren: './scheduler/scheduler.module#SchedulerModule',
+                        data: { breadcrumb: 'Scheduler' },
+                        // canActivate: [AuthGuardService],
+                    },
                 ]
             },
             {

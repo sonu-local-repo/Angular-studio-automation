@@ -1,0 +1,141 @@
+<!-- <div fxLayout="row" fxFill>
+  <div fxFill style="padding-bottom: 25px;">
+    <app-progress-bar-top></app-progress-bar-top>
+  </div>
+</div> -->
+
+<div fxLayout="row wrap">
+  <!-- <mat-progress-bar mode="indetermiate"></mat-progress-bar> -->
+  <!-- Opportunity Details Header -->
+  <div fxFlex="100" fxFlex.gt-sm="20">
+    <mat-card>
+      <div style="float: left; padding-top: 5px;">
+        <mat-card-subtitle>Opportunity Details</mat-card-subtitle>
+      </div>
+
+      <div *ngIf="opty">
+        <div style="float: right; font-size: 5px;"><mat-icon>edit</mat-icon></div>
+        <div *ngIf="(opty?.accounts)[0].type === 'Property'; else individual">
+          <div class="account-type-icon">
+            <mat-icon style="font-size: 150px; height:100px;width:100px;">location_city</mat-icon>
+          </div>
+        </div>
+        <ng-template #individual>
+          <div class="account-type-icon">
+            <mat-icon style="font-size: 150px; height:100px;width:100px; margin: 0 auto;">perm_identity</mat-icon>
+          </div>
+        </ng-template>
+        <div *ngFor="let account of opty?.accounts">
+          <div fxLayout="row">
+            <div class="account-header" fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <div><mat-icon>business</mat-icon></div>
+                <div class="header-items">{{ (opty?.accounts)[0].name }}</div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div class="account-header" fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <div><mat-icon>location_on</mat-icon></div>
+                <div *ngFor="let addrs of (opty?.accounts)[0]?.addresses">
+                  <div class="header-items">
+                    <div>{{ addrs.address1 }}</div>
+                    <div>{{ addrs.address2 }}</div>
+                    <div>{{ addrs.city }}, {{ addrs.state }}, {{ addrs.zip }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row wrap">
+            <div fxLayout="column" class="account-header">
+              <div fxLayout="row">
+                <div><mat-icon>smartphone</mat-icon></div>
+                <div class="header-items">{{ (opty?.accounts)[0]?.mobile }}</div>
+              </div>
+            </div>
+            <div fxLayout="column" class="account-header">
+              <div fxLayout="row">
+                <div><mat-icon>phone</mat-icon></div>
+                <div class="header-items">{{ (opty?.accounts)[0]?.phone }}</div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div class="account-header" fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <div><mat-icon>email</mat-icon></div>
+                <div class="header-items">{{ (opty?.accounts)[0]?.email }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <div *ngIf="timeline">
+        <mat-card-subtitle>Timeline</mat-card-subtitle>
+        <!-- <app-vertical-timeline [timelines]="timeline"></app-vertical-timeline> -->
+      </div>
+    </mat-card>
+  </div>
+  <!-- Opportunity Details Header -->
+  <div style="padding-left: 10px; padding-bottom: 20px;" fxFlex="100" fxFlex.gt-sm="80">
+    <div fxLayout="row wrap" fxLayoutGap="20px" style="padding-bottom: 18px;"> 
+      <div fxLayout="column" fxFlex="calc(25%-20px)">
+        <div class="mat-elevation-z1" style="background-color: white;" >
+          <mat-card-subtitle><span>Pending Tasks</span></mat-card-subtitle>
+          <div id="chart1"><br /><br /><br /><br /></div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="calc(25%-20px)">
+        <div class="mat-elevation-z1" style="background-color: white;">
+          <mat-card-subtitle><span>Estimate</span></mat-card-subtitle>
+          <div id="chart1"><br /><br /><br /><br /></div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="calc(25%-20px)">
+        <div class="mat-elevation-z1" style="background-color: white;">
+          <mat-card-subtitle><span>Invoice Amount</span></mat-card-subtitle>
+          <div id="chart1"><br /><br /><br /><br /></div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="calc(25%-20px)">
+        <div class="mat-elevation-z1" style="background-color: white;">
+          <mat-card-subtitle><span>Tasks</span></mat-card-subtitle>
+          <div id="chart1"><br /><br /><br /><br /></div>
+        </div >
+      </div>
+    </div>
+    <div class="mat-elevation-z0" style="background-color: white;">
+      <div *ngIf="quoteId; else noQuote">
+        <!-- <app-quote-summary [quoteId]="quoteId"></app-quote-summary> -->
+      </div>
+      <ng-template #noQuote>
+        <mat-card>
+          <mat-card-subtitle
+            ><span>
+              Quote
+            </span>
+          </mat-card-subtitle>
+        </mat-card>
+      </ng-template>
+    </div>
+
+    <div class="mat-elevation-z1" style="background-color: white;">
+      <mat-card-subtitle>Job</mat-card-subtitle>
+      <div *ngIf="jobsObs | async">
+        <app-jobs-summary [jobsObs]="jobsObs"></app-jobs-summary>
+      </div>
+    </div>
+    <mat-card>
+      <mat-card-subtitle>Schedule</mat-card-subtitle>
+      <mat-card-content> <br /><br /><br /><br /><br /><br /><br /><br /> </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-subtitle>Invoice</mat-card-subtitle>
+      <mat-card-content> <br /><br /><br /><br /><br /><br /><br /><br /> </mat-card-content>
+    </mat-card>
+  </div>
+</div>

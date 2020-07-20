@@ -31,7 +31,8 @@
   
   // background-color: #1e2129 !important;
   // background-color:#6259ac !important;
-  background-color: #2261c6;
+  // background-color: #009fdf;
+  background-color: #457fca;
   color: #fff !important;
   span {
     margin: 0 auto;
@@ -44,6 +45,8 @@
 
 .mat-toolbar-multiple-rows {
   min-height: 40px;
+  // background:  #009fdf
+  background:#457fca;
 }
 
 .breadcrumb-row {
@@ -56,5 +59,39 @@
 .toggle-icon {
   margin-left: -10px;
 }
+
+
+/* CUSTOM STYLE */
+.mat-sidenav {
+  width: 100%;
+}
+
+.mat-sidenav-content {
+  overflow: hidden;
+}
+
+.brand-name {
+  color: #fff !important;
+  span {
+    margin: 0 auto;
+  }
+}
+
+.logo {
+  width: 232px;
+}
+
+
+.breadcrumb-row {
+  background: #f5f5f5;
+  color: black;
+  height: 40px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 5px 0 rgba(0, 0, 0, 0.042), 0 1px 10px 0 rgba(0, 0, 0, 0.036);
+}
+
+.toggle-icon {
+  margin-left: -10px;
+}
+
 
 

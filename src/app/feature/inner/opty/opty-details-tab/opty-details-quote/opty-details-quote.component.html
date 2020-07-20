@@ -1,0 +1,9 @@
+<div *ngIf="this.quoteLines" style="background-color: white;">
+  <app-quote-summary
+    [quoteLinesInput]="this.quoteLines"
+    [optyId]="this.optyId"
+    [quoteId]="this.quoteId"
+    style="width: 100%;"
+    (quoteLineCreated)="newQuoteLineCreated()"
+  ></app-quote-summary>
+</div>

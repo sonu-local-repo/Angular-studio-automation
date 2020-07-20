@@ -1,0 +1,138 @@
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    <div fxLayout="column" fxFlex="20">
+      <app-opty-details-sidepanel></app-opty-details-sidepanel>
+    </div>
+    <div fxLayout="column" fxFlex="65" style="height: 90vh;">
+      <div fxLayout="row">
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            border: 1px solid #e7eaed;
+            padding: 0px 20px;
+          "
+        >
+          <app-opty-actions></app-opty-actions>
+          <div></div>
+        </div>
+      </div>
+      <div
+        fxLayout="column"
+        style="
+          margin-top: 20px;
+          height: 100%;
+          background-color: white;
+          border: 1px solid #e7eaed;
+        "
+      >
+        <div fxLayout="row" style="border-bottom: 1px solid #e7eaed;">
+          <div style="width: 100%; padding: 0px 20px;">
+            <!-- <mat-toolbar style="background-color: white;">
+              <mat-toolbar-row>
+               <div class="mat-tab-label">
+                  <div (click)="menuOnClick('Details')" class="mat-tab-label-content">More Details</div>
+                </div>
+                
+                <div class="mat-tab-label">
+                  <div (click)="menuOnClick('Quote')" class="mat-tab-label-content">Quote</div>
+                </div><div class="mat-tab-label">
+                  <div (click)="menuOnClick('Jobs')" class="mat-tab-label-content">Jobs</div>
+                </div><div class="mat-tab-label">
+                  <div (click)="menuOnClick('Schedule')" class="mat-tab-label-content">Schedule</div>
+                </div><div class="mat-tab-label">
+                  <div (click)="menuOnClick('Invoice')" class="mat-tab-label-content">Invoice</div>
+                </div><div class="mat-tab-label">
+                  <div (click)="menuOnClick('Estimate')" class="mat-tab-label-content">Estimate</div>
+                </div>
+              </mat-toolbar-row>
+            </mat-toolbar> -->
+            <!-- <mat-divider></mat-divider> -->
+            <mat-tab-group (selectedTabChange)="tabMenuChange($event)">
+              <mat-tab label="Quote">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined"
+                    >account_balance_wallet</mat-icon
+                  >
+                  Quotes
+                </ng-template>
+                <app-opty-details-quote></app-opty-details-quote>
+              </mat-tab>
+              <mat-tab label="Jobs">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined"
+                    >work_outline</mat-icon
+                  >
+                  Jobs
+                </ng-template>
+                <router-outlet></router-outlet>
+              </mat-tab>
+              <mat-tab label="Schedule">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined">schedule</mat-icon>
+                  Schedule
+                </ng-template>
+                <app-opty-details-schedule></app-opty-details-schedule>
+              </mat-tab>
+              <mat-tab label="Estimate">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined">event</mat-icon>
+                  Estimate
+                </ng-template>
+                <app-opty-details-estimate></app-opty-details-estimate>
+              </mat-tab>
+              <mat-tab label="Invoice">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined">receipt</mat-icon>
+                  Invoice
+                </ng-template>
+              </mat-tab>
+              <mat-tab label="Notes">
+                <ng-template mat-tab-label
+                  ><mat-icon class="material-icons-outlined">receipt</mat-icon>
+                  Notes
+                </ng-template>
+              </mat-tab>
+             
+            </mat-tab-group>
+          </div>
+        </div>
+        <div
+          fxLayout="row"
+          fxFlex
+          style="width: 100%; background-color: white;"
+        >
+          <!-- <router-outlet></router-outlet> -->
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex="15">
+      <div
+        style="
+          width: 100%;
+          height: 90vh;
+          background-color: white;
+          border: 1px solid #e7eaed;
+          overflow-y:auto;
+        "
+      >
+        <div fxLayout="row">
+          <div fxLayout="column">
+            <mat-icon class="material-icons-outlined">timeline</mat-icon>
+          </div>
+          <div fxLayout="column">
+            <div fxLayout="row"><div style="padding-top: 5px;
+              font-size: 14px;
+              padding-left: 10px;">TIMELINE</div></div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <div>
+            <app-opty-timeline></app-opty-timeline>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,300 @@
+<form [formGroup]="optyFormGroup">
+  <mat-horizontal-stepper #stepper [linear]="true">
+    <mat-step style="min-height: 400px;">
+      <div formGroupName="accounts">
+        <ng-template matStepLabel>Contact Details</ng-template>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          fxLayoutGap="15px"
+        >
+          <div fxLayout="column" fxFlex>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Account Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                required
+                #accountText
+                (keyup)="onAccountNameChange($event)"
+                (keyup.enter)="searchAccount(accountText.value, $event)"
+              />
+
+              <button
+                mat-button
+                matSuffix
+                [attr.aria-label]="'Search accounts'"
+                (click)="searchAccount(accountText.value, $event)"
+              >
+                <mat-icon>
+                  search
+                </mat-icon>
+              </button>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="true">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="15px"
+          >
+            <div fxLayout="column" fxFlex>
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" fxFlex>
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>Cell #</mat-label>
+                <input matInput formControlName="mobile" />
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="column"></div>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="15px"
+          >
+            <div fxLayout="column" fxFlex>
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone" />
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" fxFlex>
+              <!-- <mat-form-field class="mat-form-field-wrapper">
+             <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" />
+            <mat-error>This field is required</mat-error>
+          </mat-form-field> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-divider fxFlex="1 0 40%"></mat-divider>
+        <div>Opportunity Details</div>
+        <mat-divider fxFlex="1 0 40%"></mat-divider>
+        <br /><br />
+      </div>
+      <div style="padding-top: 20px;">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          fxLayoutGap="15px"
+        >
+          <div fxLayout="column" fxFlex="40">
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Opportunity Name</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Source</mat-label>
+              <input matInput formControlName="source" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Status</mat-label>
+              <input matInput formControlName="status" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxFlex>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Priority</mat-label>
+              <mat-select
+                matNativeControl
+                formControlName="priority"
+                [(value)]="selected"
+              >
+                <mat-option
+                  *ngFor="let option of priorityList"
+                  [value]="option.value"
+                >
+                  {{ option.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button mat-raised-button mat-dialog-close style="float: left;">
+          Close
+        </button>
+        <button mat-raised-button matStepperNext style="float: right;">
+          Next
+        </button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="accounts">
+      <ng-template matStepLabel>
+        <div>Service Address</div>
+      </ng-template>
+      <div formArrayName="addresses">
+        <div
+          *ngFor="
+            let addressControl of getAccountAddress().controls;
+            let pointIndex = index
+          "
+          [formGroupName]="pointIndex"
+        >
+          <div fxLayout="row" fxFill>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Address 1</mat-label>
+              <input matInput formControlName="address1" required />
+              <mat-error>This is a required field.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Address 2</mat-label>
+              <input matInput formControlName="address2" />
+            </mat-form-field>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="space-between center"
+          >
+            <div fxLayout="column" fxFlex="40">
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" />
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" fxFlex>
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state" />
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" fxFlex>
+              <mat-form-field class="mat-form-field-wrapper">
+                <mat-label>Zip</mat-label>
+                <input matInput formControlName="zip" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button mat-dialog-close style="float: left;">
+          Close
+        </button>
+        <button mat-raised-button matStepperNext style="float: right;">
+          Next
+        </button>
+        <button mat-raised-button matStepperPrevious style="float: right;">
+          Back
+        </button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="quote">
+      <div>
+        <ng-template matStepLabel>
+          <div>Job Details</div>
+        </ng-template>
+        <div
+          style="max-height: 400px; overflow: auto;"
+          formArrayName="quoteLine"
+        >
+          <div>
+            <button mat-button color="primary" (click)="addQuoteLineItems()">
+              Add New Job Item
+            </button>
+          </div>
+          <div
+            *ngFor="
+              let item of getQuoteLineItems().controls;
+              let pointIndex = index
+            "
+            [formGroupName]="pointIndex"
+          >
+            <div
+              fxLayout="row"
+              fxLayoutGap="10px"
+              fxLayoutAlign="space-between center"
+            >
+              <div fxLayout="column" fxLayoutAlign="strech" fxFlex="15">
+                <mat-form-field
+                  class="mat-form-field-wrapper"
+                  required
+                  appearance="fill"
+                >
+                  <mat-label>Type</mat-label>
+                  <input matInput formControlName="type" />
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="column" fxFlex="10">
+                <mat-form-field
+                  class="mat-form-field-wrapper"
+                  appearance="fill"
+                >
+                  <mat-label>Due Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="dueDate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div fxLayout="column" fxFlex>
+                <mat-form-field
+                  class="mat-form-field-wrapper"
+                  appearance="fill"
+                >
+                  <mat-label>Description</mat-label>
+                  <textarea
+                    formControlName="description"
+                    matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+              <div fxLayout="column" style="padding-bottom: 10px;">
+                <button mat-button (click)="removeQuoteLineItems(pointIndex)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div fxLayout="row"></div>
+          </div>
+        </div>
+      </div>
+      <button mat-raised-button mat-dialog-close style="float: left;">
+        Close
+      </button>
+      <button
+        mat-raised-button
+        matStepperNext
+        style="float: right;"
+        (click)="saveOpty()"
+      >
+        Save
+      </button>
+      <button mat-raised-button matStepperPrevious style="float: right;">
+        Back
+      </button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>

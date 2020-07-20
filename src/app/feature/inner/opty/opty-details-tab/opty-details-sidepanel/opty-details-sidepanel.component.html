@@ -1,0 +1,210 @@
+<!-- <div style="background-color: white;">
+  <div *ngIf="opty">
+    <div style="float: right; font-size: 5px;">
+      <mat-icon>edit</mat-icon>
+    </div>
+    <div *ngIf="(opty?.accounts)[0].type === 'Property'; else individual">
+      <div class="account-type-icon">
+        <mat-icon style="font-size: 100px; height:100px;width:100px;"
+          >location_city</mat-icon
+        >
+      </div>
+    </div>
+    <ng-template #individual>
+      <div class="account-type-icon">
+        <mat-icon style="font-size: 100px; height:100px;width:100px;"
+          >perm_identity</mat-icon
+        >
+      </div>
+    </ng-template>
+    <div *ngFor="let account of opty?.accounts">
+      <div fxLayout="row">
+        <div class="account-header" fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="center">
+            <div><mat-icon>business</mat-icon></div>
+            <div class="header-items">{{ (opty?.accounts)[0].name }}</div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class="account-header" fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="center">
+            <div><mat-icon>location_on</mat-icon></div>
+            <div *ngFor="let addrs of (opty?.accounts)[0]?.addresses">
+              <div class="header-items">
+                <div>{{ addrs.address1 }}</div>
+                <div>{{ addrs.address2 }}</div>
+                <div>{{ addrs.city }}, {{ addrs.state }}, {{ addrs.zip }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <div fxLayout="column" class="account-header">
+          <div fxLayout="row">
+            <div><mat-icon>smartphone</mat-icon></div>
+            <div class="header-items">
+              {{ (opty?.accounts)[0]?.mobile }}
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" class="account-header">
+          <div fxLayout="row">
+            <div><mat-icon>phone</mat-icon></div>
+            <div class="header-items">
+              {{ (opty?.accounts)[0]?.phone }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class="account-header" fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="center">
+            <div><mat-icon>email</mat-icon></div>
+            <div class="header-items">
+              {{ (opty?.accounts)[0]?.email }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div *ngIf="opty ">
+  <div class="col-md-8 grid-margin stretch-card">
+    <div class="card" style="height: 90vh;">
+      <div class="card-body">
+        <div style="background-color: #cccccc29;">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row" style="text-align: center; margin-top: 20px;">
+              <mat-icon
+                style="
+                  font-size: 100px;
+                  color: #acacac;
+                  border: solid 1px #acacac;
+                  border-radius: 100px;
+                  height: 100px;
+                  width: 100px;
+                "
+                >person</mat-icon
+              >
+            </div>
+            <div fxLayout="row">
+              <span style="font-size: 16px; padding-top: 10px;">{{
+                (opty?.accounts)[0].name
+              }}</span>
+            </div>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            fxLayoutGap="20px"
+            style="padding: 10px 0px; color: #7a7a7a;"
+          >
+            <div fxLayout="column">
+              <mat-icon
+                class="material-icons-outlined"
+                style="font-size: 25px; cursor: pointer;"
+              >
+                phone
+              </mat-icon>
+            </div>
+            <div fxLayout="column">
+              <mat-icon
+                class="material-icons-outlined"
+                style="font-size: 25px; cursor: pointer;"
+                (click)="composeEmail()"
+              >
+                email
+              </mat-icon>
+            </div>
+            <mat-icon
+              class="material-icons-outlined"
+              style="font-size: 25px; cursor: pointer;"
+            >
+              language
+            </mat-icon>
+          </div>
+        </div>
+        <p class="card-description">Customer Information</p>
+        <ul class="about">
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Name:</span
+            ><span class="about-item-detail">{{
+              (opty?.accounts)[0].name
+            }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Mobile:</span
+            ><span class="about-item-detail">{{
+              (opty?.accounts)[0]?.mobile
+            }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Phone:</span
+            ><span class="about-item-detail">{{
+              (opty?.accounts)[0]?.phone
+            }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Address:</span
+            ><span class="about-item-detail">
+              <div *ngFor="let addrs of (opty?.accounts)[0]?.addresses">
+                <div>
+                  <div>{{ addrs.address1 }}</div>
+                  <div>{{ addrs.address2 }}</div>
+                  <div>{{ addrs.city }}, {{ addrs.state }}</div>
+                </div>
+              </div>
+            </span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Zip:</span
+            ><span class="about-item-detail">
+              <div *ngFor="let addrs of (opty?.accounts)[0]?.addresses">
+                <div>
+                  <div>{{ addrs.zip }}</div>
+                </div>
+              </div>
+            </span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Email:</span
+            ><span class="about-item-detail"
+              ><a href="">{{ (opty?.accounts)[0]?.email }}</a></span
+            >
+          </li>
+        </ul>
+        <p class="card-description">Opportunity Information</p>
+        <ul class="about">
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Name:</span
+            ><span class="about-item-detail">{{ opty?.name }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Status:</span
+            ><span class="about-item-detail">{{ opty?.status }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Stage:</span
+            ><span class="about-item-detail">{{ opty?.stage }}</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Source:</span
+            ><span class="about-item-detail">Yelp</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi"></i><span class="about-item-name">Value:</span
+            ><span class="about-item-detail">$10000</span>
+          </li>
+          <li class="about-items">
+            <i class="mdi mdi-water icon-sm"></i
+            ><span class="about-item-name">Created By:</span
+            ><span class="about-item-detail">Deepak</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

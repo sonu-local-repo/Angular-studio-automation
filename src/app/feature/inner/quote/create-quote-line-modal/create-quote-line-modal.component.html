@@ -1,0 +1,63 @@
+<div style="font-weight: 500;">Create quote line item</div>
+<form [formGroup]="eventFormGroup" style="width: 100%; min-width: 400px;">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div fxLayout="column" fxFlex>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type" required />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <mat-form-field fxFlex>
+        <mat-label>Due Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endDatePicker"
+          formControlName="dueDate"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="status" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <mat-form-field>
+        <mat-label>Rate</mat-label>
+        <input matInput formControlName="rate" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+      <mat-error *ngIf="errorMessage.length > 0">{{ errorMessage }}</mat-error>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between end">
+    <div fxLayout="column">
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+    <div fxLayout="column">
+      <button
+        mat-button
+        (click)="saveEvent()"
+        [disabled]="!eventFormGroup.valid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
